@@ -1790,7 +1790,7 @@
         media="all" />
 
 {{-- main js --}}
-{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="{{ asset('landingpage/sharee/slick.min.js') }}"></script>
@@ -1876,7 +1876,7 @@
         autoplaySpeed: 2000,
     });
 </script>
-        {{-- @if (session('success'))
+        @if (session('success'))
             {
             <script>
                 Swal.fire({
@@ -1898,7 +1898,7 @@
                 });
             </script>
             }
-        @endif --}}
+        @endif
 {{-- main js end --}}
 
     <script type="text/javascript" id="woo-variation-swatches-js-extra">
