@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::gY2cZ0LE23zGOYAn',
+            '_route' => 'generated::Q8Qi0NNHE1k37qDS',
           ),
           1 => NULL,
           2 => 
@@ -154,7 +154,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/' => 
+      '/landing/page' => 
       array (
         0 => 
         array (
@@ -186,6 +186,26 @@ app('router')->setCompiledRoutes(
           2 => 
           array (
             'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/batik/dress' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'batik.dress',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
           ),
           3 => NULL,
           4 => false,
@@ -236,7 +256,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::V8yeHJluOdvsIV5Z',
+            '_route' => 'generated::3ahE0CTCHxCLIB36',
           ),
           1 => NULL,
           2 => 
@@ -930,7 +950,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::oOaUsLO5wFZd6zy2',
+            '_route' => 'generated::kl0bYTfWAAy4OWWe',
           ),
           1 => NULL,
           2 => 
@@ -949,7 +969,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::LxAUS0397IDZVUE2',
+            '_route' => 'generated::D6upqYC6fL5nFayf',
           ),
           1 => NULL,
           2 => 
@@ -2221,7 +2241,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::gY2cZ0LE23zGOYAn' => 
+    'generated::Q8Qi0NNHE1k37qDS' => 
     array (
       'methods' => 
       array (
@@ -2238,13 +2258,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:77:"function (\\Illuminate\\Http\\Request $request) {
     return $request->user();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005b60000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005bc0000000000000000";}}',
         'namespace' => NULL,
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::gY2cZ0LE23zGOYAn',
+        'as' => 'generated::Q8Qi0NNHE1k37qDS',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2339,7 +2359,7 @@ app('router')->setCompiledRoutes(
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => '/',
+      'uri' => 'landing/page',
       'action' => 
       array (
         'middleware' => 
@@ -2390,6 +2410,43 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'landing.order.store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'batik.dress' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'batik/dress',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\landingpageController@batik_dress',
+        'controller' => 'App\\Http\\Controllers\\landingpageController@batik_dress',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'batik.dress',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2479,7 +2536,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::V8yeHJluOdvsIV5Z' => 
+    'generated::3ahE0CTCHxCLIB36' => 
     array (
       'methods' => 
       array (
@@ -2499,7 +2556,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::V8yeHJluOdvsIV5Z',
+        'as' => 'generated::3ahE0CTCHxCLIB36',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5452,7 +5509,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::oOaUsLO5wFZd6zy2' => 
+    'generated::kl0bYTfWAAy4OWWe' => 
     array (
       'methods' => 
       array (
@@ -5472,7 +5529,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::oOaUsLO5wFZd6zy2',
+        'as' => 'generated::kl0bYTfWAAy4OWWe',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5488,7 +5545,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::LxAUS0397IDZVUE2' => 
+    'generated::D6upqYC6fL5nFayf' => 
     array (
       'methods' => 
       array (
@@ -5508,7 +5565,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::LxAUS0397IDZVUE2',
+        'as' => 'generated::D6upqYC6fL5nFayf',
       ),
       'fallback' => false,
       'defaults' => 

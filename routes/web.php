@@ -47,12 +47,12 @@ Route::post('/multi/order/status', [PrintController::class, 'multi_order_status'
 
 
 
-Route::get('/', [landingpageController::class, 'landing_page'])->name('landing.page');
+Route::get('/landing/page', [landingpageController::class, 'landing_page'])->name('landing.page');
 Route::post('/landing/order/store', [landingpageController::class, 'landing_order_store'])->name('landing.order.store');
 
 // landing three page
 // Route::get('/black/dress', [landingpageController::class, 'black_dress'])->name('black.dress');
-// Route::get('/batik/dress', [landingpageController::class, 'batik_dress'])->name('batik.dress');
+Route::get('/batik/dress', [landingpageController::class, 'batik_dress'])->name('batik.dress');
 // Route::get('/putul/dress', [landingpageController::class, 'putul_dress'])->name('putul.dress');
 // Route::get('/premium/dress', [landingpageController::class, 'premium_dress'])->name('premium.dress');
 // Route::get('/fotula', [landingpageController::class, 'fotula'])->name('fotula');
