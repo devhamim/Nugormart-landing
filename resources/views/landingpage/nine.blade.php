@@ -1333,7 +1333,7 @@
                                 <span style="font-family: 'Hind Siliguri', Sans-serif" class="elementor-headline-plain-text elementor-headline-text-wrapper">মদিনা ডাইং, আনস্টিচ টু পিস, রেগুলার প্রাইস </span>
                                 <span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
                                     <span
-                                        class="elementor-headline-dynamic-text elementor-headline-text-active">১২৫০/-</span>
+                                        class="elementor-headline-dynamic-text elementor-headline-text-active">১৬০০/-</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150"
                                         preserveAspectRatio="none">
                                         <path style="stroke: red;" d="M497.4,23.9C301.6,40,155.9,80.6,4,144.4"></path>
@@ -1352,7 +1352,7 @@
                                 <span style="font-family: 'Hind Siliguri', Sans-serif" class="elementor-headline-plain-text elementor-headline-text-wrapper">আজকের অফার প্রাইস </span>
                                 <span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
                                     <span
-                                        class="elementor-headline-dynamic-text elementor-headline-text-active">১০৫০/-</span>
+                                        class="elementor-headline-dynamic-text elementor-headline-text-active">১৩৫০/-</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150"
                                         preserveAspectRatio="none">
                                         <path
