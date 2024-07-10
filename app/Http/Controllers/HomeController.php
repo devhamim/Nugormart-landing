@@ -49,10 +49,10 @@ class HomeController extends Controller
 
 
     // landingpage
-    function landingpage(){
-        $products = Product::where('landingcolor', '!=', null)->first();
-        return view('backend.landingpage',[
-            'products'=>$products,
+    function landingpage() {
+        $products = Product::whereNotNull('landingcolor')->get();
+        return view('backend.landingpage', [
+            'products' => $products,
         ]);
     }
 }
