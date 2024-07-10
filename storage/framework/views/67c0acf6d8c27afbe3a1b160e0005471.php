@@ -17,7 +17,6 @@
                 <div class="card-header card-header-border-bottom">
                     <h2>Add Product</h2>
                 </div>
-
                 <div class="card-body">
                     <form class="row g-3" method="POST" action="<?php echo e(route('product.store')); ?>" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
@@ -166,8 +165,49 @@ unset($__errorArgs, $__bag); ?>
                                         <div class="col-md-6">
                                             <label for="brand" class="col-12 col-form-label">Brand</label>
                                             <div class="col-12">
-                                                
                                                 <input id="brand" name="brand" class="form-control" type="text" value="<?php echo e(old('brand')); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="gallery_one" class="col-12 col-form-label">Gallery One</label>
+                                            <div class="col-12">
+                                                <input id="gallery_one" name="gallery_one[]" multiple class="form-control" type="file" value="<?php echo e(old('gallery_one')); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="gallery_two" class="col-12 col-form-label">Gallery Two</label>
+                                            <div class="col-12">
+                                                <input id="gallery_two" name="gallery_two[]" multiple class="form-control" type="file" value="<?php echo e(old('gallery_two')); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="gallery_three" class="col-12 col-form-label">Gallery Three</label>
+                                            <div class="col-12">
+                                                <input id="gallery_three" name="gallery_three[]" multiple class="form-control" type="file" value="<?php echo e(old('gallery_three')); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="video" class="col-12 col-form-label">Video</label>
+                                            <div class="col-12">
+                                                <input id="video" name="video" class="form-control" type="text" value="<?php echo e(old('video')); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="landingcolor" class="col-12 col-form-label">Color</label>
+                                            <div class="col-12">
+                                                <input id="landingcolor" name="landingcolor" class="form-control" type="text" value="<?php echo e(old('landingcolor')); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="showdiscount" class="col-12 col-form-label">Show Discount</label>
+                                            <div class="col-12">
+                                                <input id="showdiscount" name="showdiscount" class="form-control" type="number" value="<?php echo e(old('showdiscount')); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="showprice" class="col-12 col-form-label">Show Price</label>
+                                            <div class="col-12">
+                                                <input id="showprice" name="showprice" class="form-control" type="number" value="<?php echo e(old('showprice')); ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">

@@ -6,8 +6,10 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\Inventory;
 use App\Models\Product;
+use App\Models\productgallery;
 use App\Models\size;
 use App\Models\Subcategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Str;
 use Image;
@@ -63,13 +65,69 @@ class ProductController extends Controller
                 'brand'=>'nullable|max:225',
                 'description'=>'required',
                 'tag'=>'required',
+                'video'=>'nullable',
+                'landingcolor'=>'nullable',
+                'showdiscount'=>'nullable',
+                'showprice'=>'nullable',
             ];
 
             $validatedData = $request->validate($rules);
 
             $validatedData['slug'] = Str::lower(str_replace(' ','-',$request->name )) ;
 
+
             $product = Product::create($validatedData);
+
+            // Gallery one
+            if($request->gallery_one){
+                $uploaded_thumbnails = $request->gallery_one;
+                foreach ($uploaded_thumbnails as $thumbnail) {
+                    $thumb_extension = $thumbnail->getClientOriginalExtension();
+                    $thumb_name = Str::random(8).'-'.rand(1000,9999).'.'.$thumb_extension;
+                    Image::make($thumbnail)->save(public_path('uploads/product/gallery/'.$thumb_name));
+
+                    productgallery::insert([
+                        'product_id' => $product->id,
+                        'image' => $thumb_name,
+                        'gallery_number' => 1,
+                        'created_at' => Carbon::now(),
+                    ]);
+                }
+            }
+
+             // Gallery two
+            if($request->gallery_two){
+                $uploaded_thumbnails = $request->gallery_two;
+                foreach ($uploaded_thumbnails as $thumbnail) {
+                    $thumb_extension = $thumbnail->getClientOriginalExtension();
+                    $thumb_name = Str::random(8).'-'.rand(1000,9999).'.'.$thumb_extension;
+                    Image::make($thumbnail)->save(public_path('uploads/product/gallery/'.$thumb_name));
+
+                    productgallery::insert([
+                        'product_id' => $product->id,
+                        'image' => $thumb_name,
+                        'gallery_number' => 2,
+                        'created_at' => Carbon::now(),
+                    ]);
+                }
+            }
+             // Gallery three
+            if($request->gallery_three){
+                $uploaded_thumbnails = $request->gallery_three;
+                foreach ($uploaded_thumbnails as $thumbnail) {
+                    $thumb_extension = $thumbnail->getClientOriginalExtension();
+                    $thumb_name = Str::random(8).'-'.rand(1000,9999).'.'.$thumb_extension;
+                    Image::make($thumbnail)->save(public_path('uploads/product/gallery/'.$thumb_name));
+
+                    productgallery::insert([
+                        'product_id' => $product->id,
+                        'image' => $thumb_name,
+                        'gallery_number' => 3,
+                        'created_at' => Carbon::now(),
+                    ]);
+                }
+            }
+
 
             if($product){
                 return back()->with('success', 'Product create successfully.');
@@ -95,6 +153,10 @@ class ProductController extends Controller
                 'sku'=>'required|max:225',
                 'description'=>'required',
                 'tag'=>'required',
+                'video'=>'nullable',
+                'landingcolor'=>'nullable',
+                'showdiscount'=>'nullable',
+                'showprice'=>'nullable',
             ];
 
             $validatedData = $request->validate($rules);
@@ -167,6 +229,10 @@ class ProductController extends Controller
                 'brand'=>'nullable|max:225',
                 'description'=>'required',
                 'tag'=>'required',
+                'video'=>'nullable',
+                'landingcolor'=>'nullable',
+                'showdiscount'=>'nullable',
+                'showprice'=>'nullable',
             ];
 
             $validatedData = $request->validate($rules);

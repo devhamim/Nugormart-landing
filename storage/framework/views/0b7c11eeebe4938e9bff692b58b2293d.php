@@ -26,33 +26,20 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/black/dress">https://cottonbd.nitebiz.com/black/dress</a></td>
+                                    <td><a href="https://landing.nugormart.com/karijma/stone">https://landing.nugormart.com/karijma/stone</a></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/landing/page">https://cottonbd.nitebiz.com/landing/page</a></td>
+                                    <td><a href="https://landing.nugormart.com/batik/dress">https://landing.nugormart.com/batik/dress</a></td>
                                 </tr>
                                 <tr>
-                                    <td>3</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/putul/dress">https://cottonbd.nitebiz.com/putul/dress</a></td>
+                                    <td>2</td>
+                                    <td><a href="<?php echo e(url('/landing/'. $products->slug)); ?>"><?php echo e($products->slug); ?></a></td>
                                 </tr>
                                 
-                                <tr>
-                                    <td>4</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/batik/dress">https://cottonbd.nitebiz.com/batik/dress</a></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/premium/dress">https://cottonbd.nitebiz.com/premium/dress</a></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/fotula">https://cottonbd.nitebiz.com/fotula</a></td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/premium/tiya">https://cottonbd.nitebiz.com/premium/tiya</a></td>
-                                </tr>
+                                
+
+                                
                             </tbody>
                         </table>
                     </div>

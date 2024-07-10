@@ -33,6 +33,10 @@
                                     <td>2</td>
                                     <td><a href="https://landing.nugormart.com/batik/dress">https://landing.nugormart.com/batik/dress</a></td>
                                 </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><a href="{{ url('/landing/'. $products->slug) }}">{{ $products->slug }}</a></td>
+                                </tr>
                                 {{-- <tr>
                                     <td>2</td>
                                     <td><a href="https://cottonbd.nitebiz.com/landing/page">https://cottonbd.nitebiz.com/landing/page</a></td>

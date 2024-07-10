@@ -9,12 +9,25 @@ use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\productgallery;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Str;
 
 class landingpageController extends Controller
 {
+
+    // landing_product
+    function landing_product($slug){
+        $products = Product::where('slug', $slug)->first();
+        $products_gallery = productgallery::where('product_id', $products->id)->get();
+        return view('landingpage.ten', [
+            'products'=>$products,
+            'products_gallery'=>$products_gallery,
+        ]);
+    }
+
+
     //sharee
     function landing_page(){
         $products = Product::find(1);

@@ -23,43 +23,8 @@
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('put'); ?>
                         <div class="row ec-vendor-uploads">
-                            <div class="col-lg-4">
-                                <div class="ec-vendor-img-upload">
-                                    <div class="ec-vendor-main-img attribute_image">
-                                        <div class="avatar-upload">
-                                            <div class="avatar-edit">
-                                                <input type='file' id="imageUpload" name="image" class="ec-image-upload <?php $__errorArgs = ['image'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('image')); ?>" />
-                                                <label for="imageUpload">
-                                                    <img src="<?php echo e(asset('backend')); ?>/img/icons/edit.svg" class="svg_img header_svg" alt="edit" />
-                                                </label>
-                                            </div>
-                                            <div class="avatar-preview ec-preview">
-                                                <div class="imagePreview ec-div-preview">
-                                                    <img class="ec-image-preview" src="<?php echo e(asset('backend')); ?>/img/products/vender-upload-preview.jpg" alt="edit" />
-                                                </div>
-                                            </div>
-                                            <?php $__errorArgs = ['image'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                                <span class="text-danger"><?php echo e($message); ?></span>
-                                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8">
+                            
+                            <div class="col-lg-12">
                                 <div class="ec-vendor-upload-detail">
                                     <div class="row g-3">
                                         <div class="col-md-6">

@@ -24,7 +24,7 @@
                         @csrf
                         @method('put')
                         <div class="row ec-vendor-uploads">
-                            <div class="col-lg-4">
+                            {{-- <div class="col-lg-4">
                                 <div class="ec-vendor-img-upload">
                                     <div class="ec-vendor-main-img attribute_image">
                                         <div class="avatar-upload">
@@ -45,8 +45,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-8">
+                            </div> --}}
+                            <div class="col-lg-12">
                                 <div class="ec-vendor-upload-detail">
                                     <div class="row g-3">
                                         <div class="col-md-6">

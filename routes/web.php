@@ -39,6 +39,7 @@ Route::post('/multi/order/status', [PrintController::class, 'multi_order_status'
 
 Route::get('/landing/page', [landingpageController::class, 'landing_page'])->name('landing.page');
 Route::post('/landing/order/store', [landingpageController::class, 'landing_order_store'])->name('landing.order.store');
+Route::get('/landing/{slug}', [landingpageController::class, 'landing_product'])->name('landing.product');
 
 // landing three page
 // Route::get('/black/dress', [landingpageController::class, 'black_dress'])->name('black.dress');
