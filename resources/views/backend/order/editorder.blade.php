@@ -67,114 +67,134 @@
                     </h2>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4">
-                            <address class="info-grid">
-                                <div class="info-title"><strong>Shipped To:</strong></div><br>
-                                <div class="info-content">
-                                    {{ $bllingdetails->name }}<br>
-                                    {{ $bllingdetails->district }}<br>
-                                    {{ $bllingdetails->address }}<br>
-                                    <abbr title="Phone">P:</abbr> {{ $bllingdetails->mobile }}
-                                </div>
-                            </address>
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <address class="info-grid">
-                                <div class="info-title"><strong>Note:</strong></div><br>
-                                <div class="info-content">
-                                    {{ $bllingdetails->note }}
-                                </div>
-                            </address>
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <address class="info-grid">
-                                <div class="info-title"><strong>Order Date:</strong></div><br>
-                                <div class="info-content">
-                                    {{ $orders->created_at->format('h:i:s') }}<br>
-                                    {{ $orders->created_at->format('d M Y') }}
-                                </div>
-                            </address>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="tbl-title">PRODUCT SUMMARY</h3>
-                            <div class="table-responsive">
-                                <table class="table table-striped o-tbl">
-                                    <thead>
-                                        <tr class="line">
-                                            <td><strong>#</strong></td>
-                                            <td class="text-center"><strong>IMAGE</strong></td>
-                                            <td class="text-center"><strong>PRODUCT</strong></td>
-                                            <td class="text-center"><strong>QUANTITY</strong></td>
-                                            <td class="text-center"><strong>PRICE/UNIT</strong></td>
-                                            <td class="text-right"><strong>SUBTOTAL</strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($orderproduct as $key=>$product)
-                                            <tr>
-                                                <td>{{ $key+1 }}</td>
-                                                <td><img class="product-img"
-                                                        src="{{ asset('uploads/product') }}/{{ $product->rel_to_attribute->image }}" alt="" /></td>
-                                                <td>
-                                                    <strong>{{ $product->rel_to_pro->name }}</strong><br>
-                                                    @if ($orders->landing == 1)
-                                                        @if ($orders->color)
-                                                            Color: {{ $orders->color }},
-                                                        @endif
-                                                        @if ($orders->size)
-                                                            Size:  {{ $orders->size }}
-                                                        @endif
-                                                    @else
-                                                        @if ($product->rel_to_attribute->color_id)
-                                                            Color: {{ $product->rel_to_attribute->rel_to_color->name }},
-                                                            Size:  {{ $product->rel_to_attribute->rel_to_size->name }}
-                                                        @elseif ($product->rel_to_attribute->weight)
-                                                            Package: {{ $product->rel_to_attribute->weight }}
-                                                        @endif
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">{{ $product->quantity }}</td>
-                                                <td class="text-center">{{ number_format($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price, 2) }} Tk</td>
-                                                <td class="text-right">{{ number_format(($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price) * $product->quantity, 2) }} Tk</td>
-                                            </tr>
-
-                                        @endforeach
-                                        <tr>
-                                            <td colspan="4"></td>
-                                            <td class="text-right"><strong>Charge (+)</strong></td>
-                                            <td class="text-right"><strong>{{ $orders->delivery_charge }} Tk</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4"></td>
-                                            <td class="text-right"><strong>Discount (-)</strong></td>
-                                            <td class="text-right"><strong>{{ $orders->discount }} Tk</strong></td>
-                                        </tr>
-                                        @if ($orders->due != 0)
-                                            <tr>
-                                                <td colspan="4"></td>
-                                                <td class="text-right"><strong>Paid (-)</strong></td>
-                                                <td class="text-right"><strong>{{ number_format($orders->paid) }} Tk</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4"></td>
-                                                <td class="text-right"><strong>Due (-)</strong></td>
-                                                <td class="text-right"><strong>{{ number_format($orders->due) }} Tk</strong></td>
-                                            </tr>
-                                        @endif
-                                        <tr>
-                                            <td colspan="4">
-                                            </td>
-                                            <td class="text-right"><strong>Total</strong></td>
-                                            <td class="text-right"><strong>{{ number_format($orders->total) }} Tk</strong></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <form action="{{ route('orders.update', $orders->order_id) }}" method="POST">
+                        @csrf
+                        @method('put')
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4">
+                                <address class="info-grid">
+                                    <div class="info-title"><strong>Shipped To:</strong></div><br>
+                                    <div class="info-content">
+                                        <input type="text" class="form-control" value="{{ $bllingdetails->name }}" name="name">
+                                        <input type="text" class="form-control" value="{{ $bllingdetails->district }}" name="district">
+                                        <input type="text" class="form-control" value="{{ $bllingdetails->address }}" name="address">
+                                        <input type="text" class="form-control" value="{{ $bllingdetails->mobile }}" name="mobile">
+                                        <input type="hidden" value="{{ $bllingdetails->id }}" name="bllingdetails_id">
+                                    </div>
+                                </address>
+                            </div>
+                            <div class="col-xl-4 col-lg-4">
+                                <address class="info-grid">
+                                    <div class="info-title"><strong>Note:</strong></div><br>
+                                    <div class="info-content">
+                                        <textarea name="note" class="form-control" id="" cols="30" rows="7">{{ $bllingdetails->note }}</textarea>
+                                    </div>
+                                </address>
+                            </div>
+                            <div class="col-xl-4 col-lg-4">
+                                <address class="info-grid">
+                                    <div class="info-title"><strong>Order Date:</strong></div><br>
+                                    <div class="info-content">
+                                        {{ $orders->created_at->format('h:i:s') }}<br>
+                                        {{ $orders->created_at->format('d M Y') }}
+                                    </div>
+                                </address>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="tbl-title">PRODUCT SUMMARY</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-striped o-tbl">
+                                        <thead>
+                                            <tr class="line">
+                                                <td><strong>#</strong></td>
+                                                <td class="text-center"><strong>IMAGE</strong></td>
+                                                <td class="text-center"><strong>PRODUCT</strong></td>
+                                                <td class="text-center"><strong>QUANTITY</strong></td>
+                                                <td class="text-center"><strong>PRICE/UNIT</strong></td>
+                                                <td class="text-right"><strong>SUBTOTAL</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($orderproduct as $key=>$product)
+                                                <tr>
+                                                    <td>{{ $key+1 }}</td>
+                                                    <td><img class="product-img"
+                                                            src="{{ asset('uploads/product') }}/{{ $product->rel_to_attribute->image }}" alt="" /></td>
+                                                    <td>
+                                                        <strong>{{ $product->rel_to_pro->name }}</strong><br>
+                                                        @if ($orders->landing == 1)
+                                                            @if ($orders->color)
+                                                               <span>Color:</span> <input style="width: 200px" type="text" class="form-control" value="{{ $orders->color }}" name="color">
+                                                               <input type="hidden" value="{{ $orders->id }}" name="orders_id">
+                                                            @endif
+                                                            @if ($orders->size)
+                                                                Size:  {{ $orders->size }}
+                                                            @endif
+                                                        @else
+                                                            @if ($product->rel_to_attribute->color_id)
+                                                                Color: {{ $product->rel_to_attribute->rel_to_color->name }},
+                                                                Size:  {{ $product->rel_to_attribute->rel_to_size->name }}
+                                                            @elseif ($product->rel_to_attribute->weight)
+                                                                Package: {{ $product->rel_to_attribute->weight }}
+                                                            @endif
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" style="width: 150px; margin: 0 auto" class="form-control" value="{{ $product->quantity }}" name="quantity">
+                                                        <input type="hidden" value="{{ $product->id }}" name="orderproduct_id">
+                                                    </td>
+                                                    <td class="text-center">{{ number_format($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price, 2) }} Tk</td>
+                                                    <td class="text-right">{{ number_format(($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price) * $product->quantity, 2) }} Tk</td>
+                                                </tr>
+
+                                            @endforeach
+                                            <tr>
+                                                <td colspan="4"></td>
+                                                <td class="text-right"><strong>Charge (+)</strong></td>
+                                                <td class="text-right">
+                                                    <strong>
+                                                        <input style="width: 70px; margin-left: auto" type="text" class="form-control" value="{{ $orders->delivery_charge }}" name="delivery_charge">
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                                <td class="text-right"><strong>Discount (-)</strong></td>
+                                                <td class="text-right">
+                                                    <strong>
+                                                        <input style="width: 70px; margin-left: auto" type="text" class="form-control" value="{{ $orders->discount }}" name="discount">
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            @if ($orders->due != 0)
+                                                <tr>
+                                                    <td colspan="4"></td>
+                                                    <td class="text-right"><strong>Paid (-)</strong></td>
+                                                    <td class="text-right"><strong>{{ number_format($orders->paid) }} Tk</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4"></td>
+                                                    <td class="text-right"><strong>Due (-)</strong></td>
+                                                    <td class="text-right"><strong>{{ number_format($orders->due) }} Tk</strong></td>
+                                                </tr>
+                                            @endif
+                                            <tr>
+                                                <td colspan="4">
+                                                </td>
+                                                <td class="text-right"><strong>Total</strong></td>
+                                                <td class="text-right"><strong>{{ number_format($orders->total) }} Tk</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="my-3 text-end">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- Tracking Detail -->

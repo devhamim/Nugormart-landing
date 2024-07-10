@@ -83,7 +83,6 @@ class CategoryController extends Controller
 
         $validatedData['status'] = $request->status;
 
-
         $category->update($validatedData);
 
         if ($category) {

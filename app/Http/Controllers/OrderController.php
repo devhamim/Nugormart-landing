@@ -132,10 +132,53 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+
+     public function update(Request $request, string $id)
+     {
+         // Update Billingdetails
+         if ($request->bllingdetails_id) {
+             $billingdetails = Billingdetails::where('id', $request->bllingdetails_id)->first();
+             $billingRules = [
+                 'name' => 'required',
+                 'district' => 'required',
+                 'address' => 'required',
+                 'mobile' => 'required',
+                 'note' => 'nullable',
+             ];
+             $validatedData = $request->validate($billingRules);
+             $billingdetails->update($validatedData);
+         }
+
+         // Update Order
+         if ($request->orders_id) {
+             $order = Order::where('id', $request->orders_id)->first();
+             $subtotal = $order->sub_total*$request->quantity;
+             $subdelivary = $subtotal+$request->delivery_charge;
+             $orderRules = [
+                 'color' => 'required',
+                 'discount' => 'required',
+                 'delivery_charge' => 'required',
+             ];
+             $validatedOrder = $request->validate($orderRules);
+
+             $validatedOrder['total'] = $subdelivary-$request->discount;
+
+             $order->update($validatedOrder);
+         }
+
+         // Update OrderProduct
+         if ($request->orderproduct_id) {
+             $orderProduct = OrderProduct::where('id', $request->orderproduct_id)->first();
+             $orderProductRules = [
+                 'quantity' => 'required',
+             ];
+             $validatedOrderProduct = $request->validate($orderProductRules);
+             $orderProduct->update($validatedOrderProduct);
+         }
+
+         return back()->with('success', 'Update successfully.');
+     }
+
 
     /**
      * Remove the specified resource from storage.

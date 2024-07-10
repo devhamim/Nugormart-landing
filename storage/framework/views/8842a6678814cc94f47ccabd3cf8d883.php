@@ -66,120 +66,138 @@
                     </h2>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4">
-                            <address class="info-grid">
-                                <div class="info-title"><strong>Shipped To:</strong></div><br>
-                                <div class="info-content">
-                                    <?php echo e($bllingdetails->name); ?><br>
-                                    <?php echo e($bllingdetails->district); ?><br>
-                                    <?php echo e($bllingdetails->address); ?><br>
-                                    <abbr title="Phone">P:</abbr> <?php echo e($bllingdetails->mobile); ?>
+                    <form action="<?php echo e(route('orders.update', $orders->order_id)); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
+                        <?php echo method_field('put'); ?>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4">
+                                <address class="info-grid">
+                                    <div class="info-title"><strong>Shipped To:</strong></div><br>
+                                    <div class="info-content">
+                                        <input type="text" class="form-control" value="<?php echo e($bllingdetails->name); ?>" name="name">
+                                        <input type="text" class="form-control" value="<?php echo e($bllingdetails->district); ?>" name="district">
+                                        <input type="text" class="form-control" value="<?php echo e($bllingdetails->address); ?>" name="address">
+                                        <input type="text" class="form-control" value="<?php echo e($bllingdetails->mobile); ?>" name="mobile">
+                                        <input type="hidden" value="<?php echo e($bllingdetails->id); ?>" name="bllingdetails_id">
+                                    </div>
+                                </address>
+                            </div>
+                            <div class="col-xl-4 col-lg-4">
+                                <address class="info-grid">
+                                    <div class="info-title"><strong>Note:</strong></div><br>
+                                    <div class="info-content">
+                                        <textarea name="note" class="form-control" id="" cols="30" rows="7"><?php echo e($bllingdetails->note); ?></textarea>
+                                    </div>
+                                </address>
+                            </div>
+                            <div class="col-xl-4 col-lg-4">
+                                <address class="info-grid">
+                                    <div class="info-title"><strong>Order Date:</strong></div><br>
+                                    <div class="info-content">
+                                        <?php echo e($orders->created_at->format('h:i:s')); ?><br>
+                                        <?php echo e($orders->created_at->format('d M Y')); ?>
 
-                                </div>
-                            </address>
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <address class="info-grid">
-                                <div class="info-title"><strong>Note:</strong></div><br>
-                                <div class="info-content">
-                                    <?php echo e($bllingdetails->note); ?>
-
-                                </div>
-                            </address>
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <address class="info-grid">
-                                <div class="info-title"><strong>Order Date:</strong></div><br>
-                                <div class="info-content">
-                                    <?php echo e($orders->created_at->format('h:i:s')); ?><br>
-                                    <?php echo e($orders->created_at->format('d M Y')); ?>
-
-                                </div>
-                            </address>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="tbl-title">PRODUCT SUMMARY</h3>
-                            <div class="table-responsive">
-                                <table class="table table-striped o-tbl">
-                                    <thead>
-                                        <tr class="line">
-                                            <td><strong>#</strong></td>
-                                            <td class="text-center"><strong>IMAGE</strong></td>
-                                            <td class="text-center"><strong>PRODUCT</strong></td>
-                                            <td class="text-center"><strong>QUANTITY</strong></td>
-                                            <td class="text-center"><strong>PRICE/UNIT</strong></td>
-                                            <td class="text-right"><strong>SUBTOTAL</strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $__currentLoopData = $orderproduct; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <tr>
-                                                <td><?php echo e($key+1); ?></td>
-                                                <td><img class="product-img"
-                                                        src="<?php echo e(asset('uploads/product')); ?>/<?php echo e($product->rel_to_attribute->image); ?>" alt="" /></td>
-                                                <td>
-                                                    <strong><?php echo e($product->rel_to_pro->name); ?></strong><br>
-                                                    <?php if($orders->landing == 1): ?>
-                                                        <?php if($orders->color): ?>
-                                                            Color: <?php echo e($orders->color); ?>,
-                                                        <?php endif; ?>
-                                                        <?php if($orders->size): ?>
-                                                            Size:  <?php echo e($orders->size); ?>
-
-                                                        <?php endif; ?>
-                                                    <?php else: ?>
-                                                        <?php if($product->rel_to_attribute->color_id): ?>
-                                                            Color: <?php echo e($product->rel_to_attribute->rel_to_color->name); ?>,
-                                                            Size:  <?php echo e($product->rel_to_attribute->rel_to_size->name); ?>
-
-                                                        <?php elseif($product->rel_to_attribute->weight): ?>
-                                                            Package: <?php echo e($product->rel_to_attribute->weight); ?>
-
-                                                        <?php endif; ?>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td class="text-center"><?php echo e($product->quantity); ?></td>
-                                                <td class="text-center"><?php echo e(number_format($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price, 2)); ?> Tk</td>
-                                                <td class="text-right"><?php echo e(number_format(($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price) * $product->quantity, 2)); ?> Tk</td>
-                                            </tr>
-
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        <tr>
-                                            <td colspan="4"></td>
-                                            <td class="text-right"><strong>Charge (+)</strong></td>
-                                            <td class="text-right"><strong><?php echo e($orders->delivery_charge); ?> Tk</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4"></td>
-                                            <td class="text-right"><strong>Discount (-)</strong></td>
-                                            <td class="text-right"><strong><?php echo e($orders->discount); ?> Tk</strong></td>
-                                        </tr>
-                                        <?php if($orders->due != 0): ?>
-                                            <tr>
-                                                <td colspan="4"></td>
-                                                <td class="text-right"><strong>Paid (-)</strong></td>
-                                                <td class="text-right"><strong><?php echo e(number_format($orders->paid)); ?> Tk</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4"></td>
-                                                <td class="text-right"><strong>Due (-)</strong></td>
-                                                <td class="text-right"><strong><?php echo e(number_format($orders->due)); ?> Tk</strong></td>
-                                            </tr>
-                                        <?php endif; ?>
-                                        <tr>
-                                            <td colspan="4">
-                                            </td>
-                                            <td class="text-right"><strong>Total</strong></td>
-                                            <td class="text-right"><strong><?php echo e(number_format($orders->total)); ?> Tk</strong></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    </div>
+                                </address>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="tbl-title">PRODUCT SUMMARY</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-striped o-tbl">
+                                        <thead>
+                                            <tr class="line">
+                                                <td><strong>#</strong></td>
+                                                <td class="text-center"><strong>IMAGE</strong></td>
+                                                <td class="text-center"><strong>PRODUCT</strong></td>
+                                                <td class="text-center"><strong>QUANTITY</strong></td>
+                                                <td class="text-center"><strong>PRICE/UNIT</strong></td>
+                                                <td class="text-right"><strong>SUBTOTAL</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $__currentLoopData = $orderproduct; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <tr>
+                                                    <td><?php echo e($key+1); ?></td>
+                                                    <td><img class="product-img"
+                                                            src="<?php echo e(asset('uploads/product')); ?>/<?php echo e($product->rel_to_attribute->image); ?>" alt="" /></td>
+                                                    <td>
+                                                        <strong><?php echo e($product->rel_to_pro->name); ?></strong><br>
+                                                        <?php if($orders->landing == 1): ?>
+                                                            <?php if($orders->color): ?>
+                                                               <span>Color:</span> <input style="width: 200px" type="text" class="form-control" value="<?php echo e($orders->color); ?>" name="color">
+                                                               <input type="hidden" value="<?php echo e($orders->id); ?>" name="orders_id">
+                                                            <?php endif; ?>
+                                                            <?php if($orders->size): ?>
+                                                                Size:  <?php echo e($orders->size); ?>
+
+                                                            <?php endif; ?>
+                                                        <?php else: ?>
+                                                            <?php if($product->rel_to_attribute->color_id): ?>
+                                                                Color: <?php echo e($product->rel_to_attribute->rel_to_color->name); ?>,
+                                                                Size:  <?php echo e($product->rel_to_attribute->rel_to_size->name); ?>
+
+                                                            <?php elseif($product->rel_to_attribute->weight): ?>
+                                                                Package: <?php echo e($product->rel_to_attribute->weight); ?>
+
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" style="width: 150px; margin: 0 auto" class="form-control" value="<?php echo e($product->quantity); ?>" name="quantity">
+                                                        <input type="hidden" value="<?php echo e($product->id); ?>" name="orderproduct_id">
+                                                    </td>
+                                                    <td class="text-center"><?php echo e(number_format($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price, 2)); ?> Tk</td>
+                                                    <td class="text-right"><?php echo e(number_format(($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price) * $product->quantity, 2)); ?> Tk</td>
+                                                </tr>
+
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                                <td class="text-right"><strong>Charge (+)</strong></td>
+                                                <td class="text-right">
+                                                    <strong>
+                                                        <input style="width: 70px; margin-left: auto" type="text" class="form-control" value="<?php echo e($orders->delivery_charge); ?>" name="delivery_charge">
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"></td>
+                                                <td class="text-right"><strong>Discount (-)</strong></td>
+                                                <td class="text-right">
+                                                    <strong>
+                                                        <input style="width: 70px; margin-left: auto" type="text" class="form-control" value="<?php echo e($orders->discount); ?>" name="discount">
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <?php if($orders->due != 0): ?>
+                                                <tr>
+                                                    <td colspan="4"></td>
+                                                    <td class="text-right"><strong>Paid (-)</strong></td>
+                                                    <td class="text-right"><strong><?php echo e(number_format($orders->paid)); ?> Tk</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4"></td>
+                                                    <td class="text-right"><strong>Due (-)</strong></td>
+                                                    <td class="text-right"><strong><?php echo e(number_format($orders->due)); ?> Tk</strong></td>
+                                                </tr>
+                                            <?php endif; ?>
+                                            <tr>
+                                                <td colspan="4">
+                                                </td>
+                                                <td class="text-right"><strong>Total</strong></td>
+                                                <td class="text-right"><strong><?php echo e(number_format($orders->total)); ?> Tk</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="my-3 text-end">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- Tracking Detail -->

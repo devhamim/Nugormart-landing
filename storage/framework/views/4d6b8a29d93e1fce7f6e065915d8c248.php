@@ -1121,7 +1121,7 @@
                                 }
                             </style>
                             <div class="elementor-wrapper elementor-open-inline">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/hNS22U8GqjM?si=E9O-UqlE8E8fX5er" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/1apwdLmoKM4?si=3a2CJaRDiIiuuSPT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -1336,7 +1336,7 @@
                                 <span style="font-family: 'Hind Siliguri', Sans-serif" class="elementor-headline-plain-text elementor-headline-text-wrapper">মদিনা ডাইং, আনস্টিচ টু পিস, রেগুলার প্রাইস </span>
                                 <span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
                                     <span
-                                        class="elementor-headline-dynamic-text elementor-headline-text-active">১২৫০/-</span>
+                                        class="elementor-headline-dynamic-text elementor-headline-text-active">১৬০০/-</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150"
                                         preserveAspectRatio="none">
                                         <path style="stroke: red;" d="M497.4,23.9C301.6,40,155.9,80.6,4,144.4"></path>
@@ -1355,7 +1355,7 @@
                                 <span style="font-family: 'Hind Siliguri', Sans-serif" class="elementor-headline-plain-text elementor-headline-text-wrapper">আজকের অফার প্রাইস </span>
                                 <span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
                                     <span
-                                        class="elementor-headline-dynamic-text elementor-headline-text-active">১০৫০/-</span>
+                                        class="elementor-headline-dynamic-text elementor-headline-text-active">১৩৫০/-</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150"
                                         preserveAspectRatio="none">
                                         <path
@@ -1826,7 +1826,7 @@ unset($__errorArgs, $__bag); ?>
         media="all" />
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="<?php echo e(asset('landingpage/sharee/slick.min.js')); ?>"></script>
@@ -1912,7 +1912,29 @@ unset($__errorArgs, $__bag); ?>
         autoplaySpeed: 2000,
     });
 </script>
-        
+        <?php if(session('success')): ?>
+            {
+            <script>
+                Swal.fire({
+                    icon: "success",
+                    title: "Success...",
+                    text: "প্রিয় গ্রাহক অর্ডার কররা জন্য ধন্যবাদ",
+                });
+            </script>
+            }
+        <?php endif; ?>
+        <?php if(session('error')): ?>
+            {
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                });
+            </script>
+            }
+        <?php endif; ?>
 
 
     <script type="text/javascript" id="woo-variation-swatches-js-extra">

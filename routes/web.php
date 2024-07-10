@@ -1,32 +1,21 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\BannerController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DelevaryChargeController;
-use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\landingpageController;
-use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkatingController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\PrintController;
-use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\SMSController;
 use App\Http\Controllers\SubcategoryController;
-use App\Http\Controllers\TermAndConditionController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [FrontendController::class, 'home'])->name('home');
 // multipal
 Route::post('/multi/view/invoice', [PrintController::class, 'multi_view_invoice'])->name('multi.view.invoice');
 
@@ -58,7 +48,6 @@ Route::get('/batik/dress', [landingpageController::class, 'batik_dress'])->name(
 // Route::get('/fotula', [landingpageController::class, 'fotula'])->name('fotula');
 // Route::get('/premium/tiya', [landingpageController::class, 'premium_tiya'])->name('premium.tiya');
 Route::get('/karijma/stone', [landingpageController::class, 'karijma_stone'])->name('karijma.stone');
-
 
 
 // login
