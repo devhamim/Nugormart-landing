@@ -135,6 +135,30 @@ unset($__errorArgs, $__bag); ?>
                                                 <input id="brand" name="brand" class="form-control" type="text" value="<?php echo e($inventorys->first()->brand); ?>">
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <label for="video" class="col-12 col-form-label">Video</label>
+                                            <div class="col-12">
+                                                <input id="video" name="video" class="form-control" type="text" value="<?php echo e($products->video); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="landingcolor" class="col-12 col-form-label">Color</label>
+                                            <div class="col-12">
+                                                <input id="landingcolor" name="landingcolor" class="form-control" type="text" value="<?php echo e($products->landingcolor); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="showdiscount" class="col-12 col-form-label">Show Discount</label>
+                                            <div class="col-12">
+                                                <input id="showdiscount" name="showdiscount" class="form-control" type="number" value="<?php echo e($products->showdiscount); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="showprice" class="col-12 col-form-label">Show Price</label>
+                                            <div class="col-12">
+                                                <input id="showprice" name="showprice" class="form-control" type="number" value="<?php echo e($products->showprice); ?>">
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <label class="form-label">Description</label>
                                             <textarea id="summernote" class="form-control <?php $__errorArgs = ['description'];
