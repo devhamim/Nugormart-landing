@@ -239,6 +239,57 @@ class ProductController extends Controller
 
             $product->update($validatedData);
 
+            // Gallery one
+            if($request->hasFile('gallery_one')) {
+                $uploaded_thumbnails = $request->file('gallery_one');
+                foreach ($uploaded_thumbnails as $thumbnail) {
+                    $thumb_extension = $thumbnail->getClientOriginalExtension();
+                    $thumb_name = Str::random(8) . '-' . rand(1000, 9999) . '.' . $thumb_extension;
+                    Image::make($thumbnail)->save(public_path('uploads/product/gallery/' . $thumb_name));
+
+                    productgallery::create([
+                        'product_id' => $product->id,
+                        'image' => $thumb_name,
+                        'gallery_number' => 1,
+                        'created_at' => now(),
+                    ]);
+                }
+            }
+
+            // Gallery two
+            if($request->hasFile('gallery_two')) {
+                $uploaded_thumbnails = $request->file('gallery_two');
+                foreach ($uploaded_thumbnails as $thumbnail) {
+                    $thumb_extension = $thumbnail->getClientOriginalExtension();
+                    $thumb_name = Str::random(8) . '-' . rand(1000, 9999) . '.' . $thumb_extension;
+                    Image::make($thumbnail)->save(public_path('uploads/product/gallery/' . $thumb_name));
+
+                    productgallery::create([
+                        'product_id' => $product->id,
+                        'image' => $thumb_name,
+                        'gallery_number' => 2,
+                        'created_at' => now(),
+                    ]);
+                }
+            }
+
+            // Gallery three
+            if($request->hasFile('gallery_three')) {
+                $uploaded_thumbnails = $request->file('gallery_three');
+                foreach ($uploaded_thumbnails as $thumbnail) {
+                    $thumb_extension = $thumbnail->getClientOriginalExtension();
+                    $thumb_name = Str::random(8) . '-' . rand(1000, 9999) . '.' . $thumb_extension;
+                    Image::make($thumbnail)->save(public_path('uploads/product/gallery/' . $thumb_name));
+
+                    productgallery::create([
+                        'product_id' => $product->id,
+                        'image' => $thumb_name,
+                        'gallery_number' => 3,
+                        'created_at' => now(),
+                    ]);
+                }
+            }
+
             if($product){
                 return back()->with('success', 'Product update successfully.');
             }
