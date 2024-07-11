@@ -1358,14 +1358,14 @@
                                     <form action="{{ route('landing.order.store') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $products->id }}">
-                                        <input type="hidden" name="attribute_id" value="85">
-                                        <input type="hidden" name="inventory_id" value="36">
                                         @if ($products->inventorie_id != null)
                                             @if ($products->rel_to_inventorie)
                                                 @php
                                                     $inventorie = $products->rel_to_inventorie
                                                 @endphp
                                                 @foreach ($inventorie->rel_to_attribute->take(1) as $attribute)
+                                                    <input type="hidden" name="attribute_id" value="{{ $attribute->id }}">
+                                                    <input type="hidden" name="inventory_id" value="{{ $attribute->inventorie_id }}">
                                                     @if ($attribute->sell_price != null)
                                                         <input type="hidden" name="price" value="{{$attribute->sell_price}}">
                                                     @else

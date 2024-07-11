@@ -1362,14 +1362,14 @@
                                     <form action="<?php echo e(route('landing.order.store')); ?>" method="POST">
                                         <?php echo csrf_field(); ?>
                                         <input type="hidden" name="product_id" value="<?php echo e($products->id); ?>">
-                                        <input type="hidden" name="attribute_id" value="85">
-                                        <input type="hidden" name="inventory_id" value="36">
                                         <?php if($products->inventorie_id != null): ?>
                                             <?php if($products->rel_to_inventorie): ?>
                                                 <?php
                                                     $inventorie = $products->rel_to_inventorie
                                                 ?>
                                                 <?php $__currentLoopData = $inventorie->rel_to_attribute->take(1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attribute): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <input type="hidden" name="attribute_id" value="<?php echo e($attribute->id); ?>">
+                                                    <input type="hidden" name="inventory_id" value="<?php echo e($attribute->inventorie_id); ?>">
                                                     <?php if($attribute->sell_price != null): ?>
                                                         <input type="hidden" name="price" value="<?php echo e($attribute->sell_price); ?>">
                                                     <?php else: ?>

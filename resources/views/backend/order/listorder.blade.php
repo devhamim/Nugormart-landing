@@ -162,9 +162,10 @@
                                             @foreach ($order->rel_to_orderpro->take(1) as $OrderProduct)
                                                 @if ($OrderProduct != null)
                                                     @if ($OrderProduct->rel_to_attribute != null)
+                                                    {{-- {{ $OrderProduct->rel_to_attribute->image }} --}}
                                                         <img width="100" src="{{ asset('uploads/product') }}/{{ $OrderProduct->rel_to_attribute->image }}" alt="Image" />
                                                     @elseif ($OrderProduct->rel_to_pro)
-                                                        <img width="100" src="{{ asset('uploads/product') }}/{{ $OrderProduct->rel_to_pro->image }}" alt="Image" />
+                                                        {{-- <img width="100" src="{{ asset('uploads/product') }}/{{ $OrderProduct->rel_to_pro->image }}" alt="Image" /> --}}
                                                     @endif
                                                 @endif
                                             @endforeach

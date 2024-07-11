@@ -161,9 +161,10 @@
                                             <?php $__currentLoopData = $order->rel_to_orderpro->take(1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $OrderProduct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <?php if($OrderProduct != null): ?>
                                                     <?php if($OrderProduct->rel_to_attribute != null): ?>
+                                                    
                                                         <img width="100" src="<?php echo e(asset('uploads/product')); ?>/<?php echo e($OrderProduct->rel_to_attribute->image); ?>" alt="Image" />
                                                     <?php elseif($OrderProduct->rel_to_pro): ?>
-                                                        <img width="100" src="<?php echo e(asset('uploads/product')); ?>/<?php echo e($OrderProduct->rel_to_pro->image); ?>" alt="Image" />
+                                                        
                                                     <?php endif; ?>
                                                 <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

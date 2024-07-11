@@ -25,7 +25,7 @@
                                     <th>SKU</th>
                                     <th>Brand</th>
                                     <th>Inventory</th>
-                                    
+                                    <th>Status</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
