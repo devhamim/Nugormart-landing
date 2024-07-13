@@ -173,17 +173,21 @@
                                         <td>
                                             <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->name : 'No Billing Details'); ?></span>
                                             <br>
-                                            <a href="tel: <?php echo e($order->rel_to_billing ? $order->rel_to_billing->mobile : 'No Billing Details'); ?>"><span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->mobile : 'No Billing Details'); ?></span></a>
+                                            <a href="tel: <?php echo e($order->rel_to_billing ? $order->rel_to_billing->mobile : 'No Billing Details'); ?>">
+                                                <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->mobile : 'No Billing Details'); ?></span>
+                                            </a>
                                             <br>
                                             <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->address : 'No Billing Details'); ?></span>
                                             <br>
-                                            <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->district : 'No Busines Name'); ?></span>
+                                            <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->district : 'No Business Name'); ?></span><br>
+                                            <button class="badge badge-primary order_copy" data-order-id="<?php echo e($order->id); ?>">Copy</button>
                                         </td>
                                         <td>
                                             <?php $__currentLoopData = $order->rel_to_orderpro; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $OrderProduct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <?php if($OrderProduct != null): ?>
                                                     <?php if($order->landing == 1): ?>
-                                                        <span><?php echo e($OrderProduct->rel_to_pro->name??''); ?> <br> <?php echo e($OrderProduct->quantity); ?> x <?php echo e($OrderProduct->price); ?>,
+                                                        <span><?php echo e($OrderProduct->rel_to_pro->name??''); ?> <br> <span class="quantity_copy">
+                                                            <?php echo e($OrderProduct->quantity); ?></span> x <?php echo e($OrderProduct->price); ?>,
                                                             <?php if($order->color != null): ?>
                                                                 Color: <?php echo e($order->color); ?>
 
@@ -255,7 +259,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu">
-                                                    <button class="dropdown-item">Copy</button>
+
                                                     <a href="<?php echo e(route('orders.edit',  $order->id)); ?>" class="dropdown-item">Edit</a>
                                                     <form action="<?php echo e(route('orders.destroy',  $order->id)); ?>" method="POST">
                                                         <?php echo csrf_field(); ?>
@@ -281,7 +285,7 @@
 
 <!-- Order Details Modal -->
 <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
@@ -289,7 +293,7 @@
             </div>
             <div class="modal-body">
                 <!-- Order details will be dynamically populated here -->
-                <div id="orderDetailsContent"></div>
+                <pre id="orderDetailsContent"></pre>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -299,51 +303,51 @@
     </div>
 </div>
 
+
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer_scripts'); ?>
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-        // Function to populate and show the modal with order details
-        function showOrderDetails(order) {
-            let orderDetailsHtml = `
-                <p><strong>Order ID:</strong> ${order.order_id}</p>
-                <p><strong>Customer Info:</strong> ${order.customer_info}</p>
-                <p><strong>Products:</strong> ${order.products}</p>
-                <p><strong>Subtotal:</strong> ${order.subtotal}Tk</p>
-                <p><strong>Charge:</strong> ${order.charge}Tk</p>
-                <p><strong>Total:</strong> ${order.total}Tk</p>
-                <p><strong>Status:</strong> ${order.status}</p>
-                <p><strong>Date:</strong> ${order.date}</p>
-            `;
-            $('#orderDetailsContent').html(orderDetailsHtml);
-            $('#orderDetailsModal').modal('show');
-        }
-
-        // Event listener for the Copy button
-        $('.dropdown-item:contains("Copy")').on('click', function() {
-            let orderRow = $(this).closest('tr');
-            let order = {
-                order_id: orderRow.find('td:nth-child(4)').text(),
-                customer_info: orderRow.find('td:nth-child(5)').html(),
-                products: orderRow.find('td:nth-child(6)').html(),
-                subtotal: orderRow.find('td:nth-child(7)').text(),
-                charge: orderRow.find('td:nth-child(8)').text(),
-                total: orderRow.find('td:nth-child(9)').text(),
-                status: orderRow.find('td:nth-child(10) .badge').text(),
-                date: orderRow.find('td:nth-child(11)').text()
-            };
-            showOrderDetails(order);
-        });
-
-        // Copy to clipboard functionality
-        $('#copyOrderDetails').on('click', function() {
-            let orderDetailsText = $('#orderDetailsContent').text();
-            navigator.clipboard.writeText(orderDetailsText).then(function() {
+        // Function to copy order details to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
                 alert('Order details copied to clipboard!');
             }, function() {
                 alert('Failed to copy order details.');
+            });
+        }
+
+        // Event listener for the Copy button
+        document.querySelectorAll('.order_copy').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var orderId = this.getAttribute('data-order-id');
+                console.log('Copy button clicked for order ID:', orderId);  // Debugging line
+
+                var orderRow = this.closest('tr');
+                var order = {
+                    order_id: orderRow.querySelector('td:nth-child(4)').textContent.trim(),
+                    name: orderRow.querySelector('td:nth-child(5) span').textContent.trim(),
+                    address: orderRow.querySelectorAll('td:nth-child(5) span')[2].textContent.trim() + ', ' + orderRow.querySelectorAll('td:nth-child(5) span')[3].textContent.trim(),
+                    phone: orderRow.querySelector('td:nth-child(5) a').textContent.trim(),
+                    color: orderRow.querySelector('td:nth-child(6) span:nth-child(1)').textContent.split(':')[1].trim(),
+                    quantity: orderRow.querySelector('.quantity_copy').textContent.trim(),
+                    bill: orderRow.querySelector('td:nth-child(9)').textContent.trim()
+                };
+
+                var orderDetailsText = `
+Order NO: ${order.order_id}
+Name: ${order.name}
+Address: ${order.address}
+Phone: ${order.phone}
+Color: ${order.color}
+Quantity: ${order.quantity}
+Bill: ${order.bill}
+                `;
+                console.log('Order details to copy:', orderDetailsText);  // Debugging line
+                copyToClipboard(orderDetailsText.trim());
             });
         });
     });
