@@ -248,6 +248,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu">
+                                                    <button class="dropdown-item">Copy</button>
                                                     <a href="{{ route('orders.edit',  $order->id) }}" class="dropdown-item">Edit</a>
                                                     <form action="{{ route('orders.destroy',  $order->id) }}" method="POST">
                                                         @csrf
@@ -269,9 +270,79 @@
         </div>
     </div>
 </div>
+
+
+<!-- Order Details Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Order details will be dynamically populated here -->
+                <div id="orderDetailsContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="copyOrderDetails">Copy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('footer_scripts')
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to populate and show the modal with order details
+        function showOrderDetails(order) {
+            let orderDetailsHtml = `
+                <p><strong>Order ID:</strong> ${order.order_id}</p>
+                <p><strong>Customer Info:</strong> ${order.customer_info}</p>
+                <p><strong>Products:</strong> ${order.products}</p>
+                <p><strong>Subtotal:</strong> ${order.subtotal}Tk</p>
+                <p><strong>Charge:</strong> ${order.charge}Tk</p>
+                <p><strong>Total:</strong> ${order.total}Tk</p>
+                <p><strong>Status:</strong> ${order.status}</p>
+                <p><strong>Date:</strong> ${order.date}</p>
+            `;
+            $('#orderDetailsContent').html(orderDetailsHtml);
+            $('#orderDetailsModal').modal('show');
+        }
+
+        // Event listener for the Copy button
+        $('.dropdown-item:contains("Copy")').on('click', function() {
+            let orderRow = $(this).closest('tr');
+            let order = {
+                order_id: orderRow.find('td:nth-child(4)').text(),
+                customer_info: orderRow.find('td:nth-child(5)').html(),
+                products: orderRow.find('td:nth-child(6)').html(),
+                subtotal: orderRow.find('td:nth-child(7)').text(),
+                charge: orderRow.find('td:nth-child(8)').text(),
+                total: orderRow.find('td:nth-child(9)').text(),
+                status: orderRow.find('td:nth-child(10) .badge').text(),
+                date: orderRow.find('td:nth-child(11)').text()
+            };
+            showOrderDetails(order);
+        });
+
+        // Copy to clipboard functionality
+        $('#copyOrderDetails').on('click', function() {
+            let orderDetailsText = $('#orderDetailsContent').text();
+            navigator.clipboard.writeText(orderDetailsText).then(function() {
+                alert('Order details copied to clipboard!');
+            }, function() {
+                alert('Failed to copy order details.');
+            });
+        });
+    });
+</script>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         var start_date = '{{ $defaultStartDate }}';
