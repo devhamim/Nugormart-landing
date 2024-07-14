@@ -162,7 +162,7 @@
                                                 <?php if($OrderProduct != null): ?>
                                                     <?php if($OrderProduct->rel_to_attribute != null): ?>
                                                     
-                                                        <img width="100" src="<?php echo e(asset('uploads/product')); ?>/<?php echo e($OrderProduct->rel_to_attribute->image); ?>" alt="Image" />
+                                                        <img class="image_copy" width="100" src="<?php echo e(asset('uploads/product')); ?>/<?php echo e($OrderProduct->rel_to_attribute->image); ?>" alt="Image" />
                                                     <?php elseif($OrderProduct->rel_to_pro): ?>
                                                         
                                                     <?php endif; ?>
@@ -173,17 +173,23 @@
                                         <td>
                                             <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->name : 'No Billing Details'); ?></span>
                                             <br>
-                                            <a href="tel: <?php echo e($order->rel_to_billing ? $order->rel_to_billing->mobile : 'No Billing Details'); ?>"><span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->mobile : 'No Billing Details'); ?></span></a>
+                                            <a href="tel: <?php echo e($order->rel_to_billing ? $order->rel_to_billing->mobile : 'No Billing Details'); ?>">
+                                                <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->mobile : 'No Billing Details'); ?></span>
+                                            </a>
                                             <br>
                                             <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->address : 'No Billing Details'); ?></span>
                                             <br>
-                                            <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->district : 'No Busines Name'); ?></span>
+                                            <span><?php echo e($order->rel_to_billing ? $order->rel_to_billing->district : 'No Business Name'); ?></span><br>
+                                            <?php if($order->status == 4): ?>
+                                                <button class="badge badge-primary order_copy" data-order-id="<?php echo e($order->id); ?>">P.Slip</button>
+                                            <?php endif; ?>
                                         </td>
                                         <td>
                                             <?php $__currentLoopData = $order->rel_to_orderpro; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $OrderProduct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <?php if($OrderProduct != null): ?>
                                                     <?php if($order->landing == 1): ?>
-                                                        <span><?php echo e($OrderProduct->rel_to_pro->name??''); ?> <br> <?php echo e($OrderProduct->quantity); ?> x <?php echo e($OrderProduct->price); ?>,
+                                                        <span><?php echo e($OrderProduct->rel_to_pro->name??''); ?> <br> <span class="quantity_copy">
+                                                            <?php echo e($OrderProduct->quantity); ?></span> x <?php echo e($OrderProduct->price); ?>,
                                                             <?php if($order->color != null): ?>
                                                                 Color: <?php echo e($order->color); ?>
 
@@ -255,6 +261,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu">
+
                                                     <a href="<?php echo e(route('orders.edit',  $order->id)); ?>" class="dropdown-item">Edit</a>
                                                     <form action="<?php echo e(route('orders.destroy',  $order->id)); ?>" method="POST">
                                                         <?php echo csrf_field(); ?>
@@ -276,9 +283,76 @@
         </div>
     </div>
 </div>
+
+<!-- Order Details Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Order details will be dynamically populated here -->
+                <pre id="orderDetailsContent"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="copyOrderDetails">Copy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer_scripts'); ?>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Order details copied to clipboard!');
+            }, function() {
+                alert('Failed to copy order details.');
+            });
+        }
+
+        document.querySelectorAll('.order_copy').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var orderId = this.getAttribute('data-order-id');
+                console.log('Copy button clicked for order ID:', orderId);
+
+                var orderRow = this.closest('tr');
+                var order = {
+                    order_id: orderRow.querySelector('td:nth-child(4)').textContent.trim(),
+                    name: orderRow.querySelector('td:nth-child(5) span').textContent.trim(),
+                    address: orderRow.querySelectorAll('td:nth-child(5) span')[2].textContent.trim(),
+                    phone: orderRow.querySelector('td:nth-child(5) a').textContent.trim(),
+                    color: orderRow.querySelector('td:nth-child(6) span:nth-child(1)').textContent.split(':')[1].trim(),
+                    quantity: orderRow.querySelector('.quantity_copy').textContent.trim(),
+                    bill: orderRow.querySelector('td:nth-child(9)').textContent.trim()
+                };
+
+                var orderDetailsText = `
+Order NO: ${order.order_id}
+Name: ${order.name}
+Address: ${order.address}
+Phone: ${order.phone}
+Color: ${order.color}
+Quantity: ${order.quantity}
+Bill: ${order.bill}
+                `;
+                console.log('Order details to copy:', orderDetailsText);
+                copyToClipboard(orderDetailsText.trim());
+            });
+        });
+    });
+</script>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         var start_date = '<?php echo e($defaultStartDate); ?>';

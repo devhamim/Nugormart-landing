@@ -163,7 +163,7 @@
                                                 @if ($OrderProduct != null)
                                                     @if ($OrderProduct->rel_to_attribute != null)
                                                     {{-- {{ $OrderProduct->rel_to_attribute->image }} --}}
-                                                        <img width="100" src="{{ asset('uploads/product') }}/{{ $OrderProduct->rel_to_attribute->image }}" alt="Image" />
+                                                        <img class="image_copy" width="100" src="{{ asset('uploads/product') }}/{{ $OrderProduct->rel_to_attribute->image }}" alt="Image" />
                                                     @elseif ($OrderProduct->rel_to_pro)
                                                         {{-- <img width="100" src="{{ asset('uploads/product') }}/{{ $OrderProduct->rel_to_pro->image }}" alt="Image" /> --}}
                                                     @endif
@@ -181,7 +181,9 @@
                                             <span>{{ $order->rel_to_billing ? $order->rel_to_billing->address : 'No Billing Details' }}</span>
                                             <br>
                                             <span>{{ $order->rel_to_billing ? $order->rel_to_billing->district : 'No Business Name' }}</span><br>
-                                            <button class="badge badge-primary order_copy" data-order-id="{{ $order->id }}">Copy</button>
+                                            @if ($order->status == 4)
+                                                <button class="badge badge-primary order_copy" data-order-id="{{ $order->id }}">P.Slip</button>
+                                            @endif
                                         </td>
                                         <td>
                                             @foreach ($order->rel_to_orderpro as $OrderProduct)
@@ -275,7 +277,6 @@
     </div>
 </div>
 
-
 <!-- Order Details Modal -->
 <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -297,14 +298,13 @@
 </div>
 
 
-
 @endsection
 
 @section('footer_scripts')
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-        // Function to copy order details to clipboard
+
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(function() {
                 alert('Order details copied to clipboard!');
@@ -313,17 +313,16 @@
             });
         }
 
-        // Event listener for the Copy button
         document.querySelectorAll('.order_copy').forEach(function(button) {
             button.addEventListener('click', function() {
                 var orderId = this.getAttribute('data-order-id');
-                console.log('Copy button clicked for order ID:', orderId);  // Debugging line
+                console.log('Copy button clicked for order ID:', orderId);
 
                 var orderRow = this.closest('tr');
                 var order = {
                     order_id: orderRow.querySelector('td:nth-child(4)').textContent.trim(),
                     name: orderRow.querySelector('td:nth-child(5) span').textContent.trim(),
-                    address: orderRow.querySelectorAll('td:nth-child(5) span')[2].textContent.trim() + ', ' + orderRow.querySelectorAll('td:nth-child(5) span')[3].textContent.trim(),
+                    address: orderRow.querySelectorAll('td:nth-child(5) span')[2].textContent.trim(),
                     phone: orderRow.querySelector('td:nth-child(5) a').textContent.trim(),
                     color: orderRow.querySelector('td:nth-child(6) span:nth-child(1)').textContent.split(':')[1].trim(),
                     quantity: orderRow.querySelector('.quantity_copy').textContent.trim(),
@@ -339,7 +338,7 @@ Color: ${order.color}
 Quantity: ${order.quantity}
 Bill: ${order.bill}
                 `;
-                console.log('Order details to copy:', orderDetailsText);  // Debugging line
+                console.log('Order details to copy:', orderDetailsText);
                 copyToClipboard(orderDetailsText.trim());
             });
         });
