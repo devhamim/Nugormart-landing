@@ -157,12 +157,12 @@
                                             <input type="checkbox" name="checkbox" class="sub_chk" data-id="<?php echo e($order->id); ?>">
                                         </td>
                                         <td><?php echo e($sl+1); ?></td>
-                                        <td>
+                                        <td class="image_copy">
                                             <?php $__currentLoopData = $order->rel_to_orderpro->take(1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $OrderProduct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <?php if($OrderProduct != null): ?>
                                                     <?php if($OrderProduct->rel_to_attribute != null): ?>
                                                     
-                                                        <img class="image_copy" width="100" src="<?php echo e(asset('uploads/product')); ?>/<?php echo e($OrderProduct->rel_to_attribute->image); ?>" alt="Image" />
+                                                        <img  width="100" src="<?php echo e(asset('uploads/product')); ?>/<?php echo e($OrderProduct->rel_to_attribute->image); ?>" alt="Image" />
                                                     <?php elseif($OrderProduct->rel_to_pro): ?>
                                                         
                                                     <?php endif; ?>
@@ -326,6 +326,8 @@
                 console.log('Copy button clicked for order ID:', orderId);
 
                 var orderRow = this.closest('tr');
+                var imageElement = orderRow.querySelector('.image_copy img');
+                var imageSrc = imageElement ? imageElement.getAttribute('src') : '';
                 var order = {
                     order_id: orderRow.querySelector('td:nth-child(4)').textContent.trim(),
                     name: orderRow.querySelector('td:nth-child(5) span').textContent.trim(),
@@ -333,7 +335,8 @@
                     phone: orderRow.querySelector('td:nth-child(5) a').textContent.trim(),
                     color: orderRow.querySelector('td:nth-child(6) span:nth-child(1)').textContent.split(':')[1].trim(),
                     quantity: orderRow.querySelector('.quantity_copy').textContent.trim(),
-                    bill: orderRow.querySelector('td:nth-child(9)').textContent.trim()
+                    bill: orderRow.querySelector('td:nth-child(9)').textContent.trim(),
+                    image: imageSrc
                 };
 
                 var orderDetailsText = `
@@ -344,6 +347,7 @@ Phone: ${order.phone}
 Color: ${order.color}
 Quantity: ${order.quantity}
 Bill: ${order.bill}
+Image: ${order.image}
                 `;
                 console.log('Order details to copy:', orderDetailsText);
                 copyToClipboard(orderDetailsText.trim());
