@@ -319,8 +319,6 @@
                 console.log('Copy button clicked for order ID:', orderId);
 
                 var orderRow = this.closest('tr');
-                var imageElement = orderRow.querySelector('.image_copy img');
-                var imageSrc = imageElement ? imageElement.getAttribute('src') : '';
                 var order = {
                     order_id: orderRow.querySelector('td:nth-child(4)').textContent.trim(),
                     name: orderRow.querySelector('td:nth-child(5) span').textContent.trim(),
@@ -329,7 +327,6 @@
                     color: orderRow.querySelector('td:nth-child(6) span:nth-child(1)').textContent.split(':')[1].trim(),
                     quantity: orderRow.querySelector('.quantity_copy').textContent.trim(),
                     bill: orderRow.querySelector('td:nth-child(9)').textContent.trim(),
-                    image: imageSrc
                 };
 
                 var orderDetailsText = `
@@ -340,7 +337,6 @@ Phone: ${order.phone}
 Color: ${order.color}
 Quantity: ${order.quantity}
 Bill: ${order.bill}
-Image: ${order.image}
                 `;
                 console.log('Order details to copy:', orderDetailsText);
                 copyToClipboard(orderDetailsText.trim());
