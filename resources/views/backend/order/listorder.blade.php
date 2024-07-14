@@ -327,7 +327,6 @@
                     color: orderRow.querySelector('td:nth-child(6) span:nth-child(1)').textContent.split(':')[1].trim(),
                     quantity: orderRow.querySelector('.quantity_copy').textContent.trim(),
                     bill: orderRow.querySelector('td:nth-child(9)').textContent.trim(),
-                    image: orderRow.querySelector('td:nth-child(3) img').src.trim()
                 };
 
                 var orderDetailsText = `
@@ -338,7 +337,6 @@ Phone: ${order.phone}
 Color: ${order.color}
 Quantity: ${order.quantity}
 Bill: ${order.bill}
-Image: <img src="${order.image}" alt="Order Image" />
                 `;
                 console.log('Order details to copy:', orderDetailsText);
                 copyToClipboard(orderDetailsText.trim());
@@ -346,8 +344,6 @@ Image: <img src="${order.image}" alt="Order Image" />
         });
     });
 </script>
-
-
 
 
 <script type="text/javascript">

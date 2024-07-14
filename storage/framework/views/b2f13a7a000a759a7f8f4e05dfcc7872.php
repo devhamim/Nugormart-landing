@@ -309,66 +309,47 @@
 
 <?php $__env->startSection('footer_scripts'); ?>
 
-
-
-<script>
+<script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-    function copyToClipboard(html) {
-        const tempElement = document.createElement('div');
-        tempElement.innerHTML = html;
-        document.body.appendChild(tempElement);
 
-        if (document.createRange && window.getSelection) {
-            const range = document.createRange();
-            range.selectNodeContents(tempElement);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            document.execCommand('copy');
-            selection.removeAllRanges();
-
-            alert('Order details copied to clipboard!');
-        } else {
-            alert('Failed to copy order details.');
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Order details copied to clipboard!');
+            }, function() {
+                alert('Failed to copy order details.');
+            });
         }
 
-        document.body.removeChild(tempElement);
-    }
+        document.querySelectorAll('.order_copy').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var orderId = this.getAttribute('data-order-id');
+                console.log('Copy button clicked for order ID:', orderId);
 
-    document.querySelectorAll('.order_copy').forEach(function(button) {
-        button.addEventListener('click', function() {
-            var orderId = this.getAttribute('data-order-id');
-            console.log('Copy button clicked for order ID:', orderId);
+                var orderRow = this.closest('tr');
+                var order = {
+                    order_id: orderRow.querySelector('td:nth-child(4)').textContent.trim(),
+                    name: orderRow.querySelector('td:nth-child(5) span').textContent.trim(),
+                    address: orderRow.querySelectorAll('td:nth-child(5) span')[2].textContent.trim(),
+                    phone: orderRow.querySelector('td:nth-child(5) a').textContent.trim(),
+                    color: orderRow.querySelector('td:nth-child(6) span:nth-child(1)').textContent.split(':')[1].trim(),
+                    quantity: orderRow.querySelector('.quantity_copy').textContent.trim(),
+                    bill: orderRow.querySelector('td:nth-child(9)').textContent.trim(),
+                };
 
-            var orderRow = this.closest('tr');
-            var order = {
-                order_id: orderRow.querySelector('td:nth-child(4)').textContent.trim(),
-                name: orderRow.querySelector('td:nth-child(5) span').textContent.trim(),
-                address: orderRow.querySelectorAll('td:nth-child(5) span')[2].textContent.trim(),
-                phone: orderRow.querySelector('td:nth-child(5) a').textContent.trim(),
-                color: orderRow.querySelector('td:nth-child(6) span:nth-child(1)').textContent.split(':')[1].trim(),
-                quantity: orderRow.querySelector('.quantity_copy').textContent.trim(),
-                bill: orderRow.querySelector('td:nth-child(9)').textContent.trim(),
-                image: orderRow.querySelector('td:nth-child(3) img').src.trim()  // Get the image source URL
-            };
-
-            var orderDetailsHTML = `
-Order NO: ${order.order_id}<br>
-Name: ${order.name}<br>
-Address: ${order.address}<br>
-Phone: ${order.phone}<br>
-Color: ${order.color}<br>
-Quantity: ${order.quantity}<br>
-Bill: ${order.bill}<br>
-Image: <img weight="100px" src="${order.image}"  />
-            `;
-
-            console.log('Order details to copy:', orderDetailsHTML);
-            copyToClipboard(orderDetailsHTML.trim());
+                var orderDetailsText = `
+Order NO: ${order.order_id}
+Name: ${order.name}
+Address: ${order.address}
+Phone: ${order.phone}
+Color: ${order.color}
+Quantity: ${order.quantity}
+Bill: ${order.bill}
+                `;
+                console.log('Order details to copy:', orderDetailsText);
+                copyToClipboard(orderDetailsText.trim());
+            });
         });
     });
-});
-
 </script>
 
 
