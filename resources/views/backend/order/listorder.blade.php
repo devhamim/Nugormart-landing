@@ -349,6 +349,7 @@ Image: <img src="${order.image}" alt="Order Image" />
 
 
 
+
 <script type="text/javascript">
     $(document).ready(function () {
         var start_date = '{{ $defaultStartDate }}';
