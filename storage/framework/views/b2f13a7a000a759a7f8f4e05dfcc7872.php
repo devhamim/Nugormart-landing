@@ -248,7 +248,7 @@
                                                 <div class="badge badge-danger">Cancel</div>
                                             <?php endif; ?>
                                         </td>
-                                        <td><?php echo e($order->created_at->format('d-m-Y H:i')); ?></td>
+                                        <td><?php echo e($order->created_at->format('d-m-Y h:i:s')); ?></td>
                                         <td>
                                             <div class="btn-group mb-1">
                                                 <button type="button"
