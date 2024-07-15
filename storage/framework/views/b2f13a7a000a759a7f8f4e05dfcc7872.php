@@ -248,7 +248,7 @@
                                                 <div class="badge badge-danger">Cancel</div>
                                             <?php endif; ?>
                                         </td>
-                                        <td><?php echo e($order->created_at->format('d-m-Y')); ?></td>
+                                        <td><?php echo e($order->created_at->format('d-m-Y H:i')); ?></td>
                                         <td>
                                             <div class="btn-group mb-1">
                                                 <button type="button"
@@ -387,27 +387,7 @@ Bill: ${order.bill}
         cb(start_date, end_date);
     });
 </script>
-<?php $__env->stopSection(); ?>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var checkboxes = document.querySelectorAll('.sub_chk');
-        let checked_value = document.getElementById('checked_value');
-
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                var checkedIDs = [];
-                var checkedCheckboxes = document.querySelectorAll('.sub_chk:checked');
-
-                checkedCheckboxes.forEach(function(checkedCheckbox) {
-                    checkedIDs.push(checkedCheckbox.getAttribute('data-id'));
-                });
-
-                checked_value.value = checkedIDs.join(', ');
-            });
-        });
-    });
-</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('total-orders').addEventListener('click', function() {
@@ -428,6 +408,27 @@ Bill: ${order.bill}
 
         document.getElementById('cancel-orders').addEventListener('click', function() {
             window.location.href = '<?php echo e(url("admin/orders")); ?>?status=cancel';
+        });
+    });
+</script>
+<?php $__env->stopSection(); ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var checkboxes = document.querySelectorAll('.sub_chk');
+        let checked_value = document.getElementById('checked_value');
+
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                var checkedIDs = [];
+                var checkedCheckboxes = document.querySelectorAll('.sub_chk:checked');
+
+                checkedCheckboxes.forEach(function(checkedCheckbox) {
+                    checkedIDs.push(checkedCheckbox.getAttribute('data-id'));
+                });
+
+                checked_value.value = checkedIDs.join(', ');
+            });
         });
     });
 </script>
