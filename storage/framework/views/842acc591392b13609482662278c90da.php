@@ -38,10 +38,6 @@
                                         <td><a href="<?php echo e(url('/landing/'. $product->slug)); ?>">https://landing.nugormart.com/<?php echo e($product->slug); ?></a></td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                
-                                
-
-                                
                             </tbody>
                         </table>
                     </div>

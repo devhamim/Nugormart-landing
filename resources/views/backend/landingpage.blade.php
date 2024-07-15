@@ -27,16 +27,16 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td><a href="https://landing.nugormart.com/karijma/stone">https://landing.nugormart.com/karijma/stone</a></td>
+                                    <td><a target="_blanck" href="https://landing.nugormart.com/karijma/stone">https://landing.nugormart.com/karijma/stone</a></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td><a href="https://landing.nugormart.com/batik/dress">https://landing.nugormart.com/batik/dress</a></td>
+                                    <td><a target="_blanck" href="https://landing.nugormart.com/batik/dress">https://landing.nugormart.com/batik/dress</a></td>
                                 </tr>
                                 @foreach ($products as $sl=>$product)
                                     <tr>
                                         <td>{{ $sl+3 }}</td>
-                                        <td><a href="{{ url('/landing/'. $product->slug) }}">https://landing.nugormart.com/{{ $product->slug }}</a></td>
+                                        <td><a target="_blanck" href="{{ url('/landing/'. $product->slug) }}">https://landing.nugormart.com/{{ $product->slug }}</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

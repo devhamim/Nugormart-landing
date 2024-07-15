@@ -1207,10 +1207,24 @@
                             <h2 class="elementor-heading-title elementor-size-default">-------বিঃদ্রঃ------</h2>
                         </div>
                     </div>
+                    <style>
+                        .elementor-2325 .elementor-element.elementor-element-7b4be82 > .elementor-widget-container {
+                            margin: 0px 0px 22px 0px;
+                            padding: 0px 0px 0px 0px;
+                            border-style: double;
+                            color: #fff;
+                            border-width: 5px 5px 5px 5px;
+                            border-color: #362727;
+                            border-radius: 10px 10px 10px 10px;
+                            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+                            background-color: transparent;
+                            background-image: linear-gradient(180deg, #D6670F 0%, #A50B5C 100%);
+                        }
+                    </style>
                     <div class="elementor-element elementor-element-7b4be82 elementor-widget elementor-widget-text-editor"
                         data-id="7b4be82" data-element_type="widget" data-widget_type="text-editor.default">
                         <div class="elementor-widget-container">
-                            <p>বাজারে সবার চেয়ে কম প্রাইজে অর্ডার করতে চাইলে এখনি অর্ডার করুন কারন * আমরা নিজস্ব কারখানায় ২০১২ সাল থেকে ইসলামপুরে পোশাক তৈরি করে আসছি।* আমাদের সকল কাপড় প্রস্তুত করি।জামা ও ওড়নার কাপড় সম্পুর্ন সুতি।</p>
+                            <p>বাজারে সবার চেয়ে কম প্রাইজে অর্ডার করতে চাইলে এখনি অর্ডার করুন কারন * আমরা নিজস্ব কারখানায় ২০১২ সাল থেকে ইসলামপুরে পোশাক তৈরি করে আসছি।* আমাদের সকল কাপড় প্রস্তুত করি। এর থকে কম প্রাইজে অনলাইনে অনেক বিজ্ঞাপন দেখতে পারেন কিন্তু কোয়ালিটি সম্পন্ন প্রোডাক্ট সরবরাহ করি একমাত্র আমরাই।</p>
                         </div>
                     </div>
                 </div>
