@@ -352,7 +352,6 @@ Bill: ${order.bill}
     });
 </script>
 
-
 <script type="text/javascript">
     $(document).ready(function () {
         var start_date = '<?php echo e($defaultStartDate); ?>';
@@ -385,32 +384,38 @@ Bill: ${order.bill}
             }
         }, cb);
         cb(start_date, end_date);
-    });
-</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
+        function navigateToOrders(status) {
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+            var url = '<?php echo e(url("admin/orders")); ?>' + '?status=' + status + '&start_date=' + start_date + '&end_date=' + end_date;
+            window.location.href = url;
+        }
+
         document.getElementById('total-orders').addEventListener('click', function() {
-            window.location.href = '<?php echo e(url("admin/orders")); ?>';
+            navigateToOrders('');
         });
 
         document.getElementById('pending-orders').addEventListener('click', function() {
-            window.location.href = '<?php echo e(url("admin/orders")); ?>?status=pending';
+            navigateToOrders('pending');
         });
 
         document.getElementById('confirm-orders').addEventListener('click', function() {
-            window.location.href = '<?php echo e(url("admin/orders")); ?>?status=confirm';
+            navigateToOrders('confirm');
         });
 
         document.getElementById('hold-orders').addEventListener('click', function() {
-            window.location.href = '<?php echo e(url("admin/orders")); ?>?status=hold';
+            navigateToOrders('hold');
         });
 
         document.getElementById('cancel-orders').addEventListener('click', function() {
-            window.location.href = '<?php echo e(url("admin/orders")); ?>?status=cancel';
+            navigateToOrders('cancel');
         });
     });
 </script>
+
+
+
 <?php $__env->stopSection(); ?>
 
 <script>
