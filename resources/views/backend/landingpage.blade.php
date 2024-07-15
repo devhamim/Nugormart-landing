@@ -33,10 +33,10 @@
                                     <td>2</td>
                                     <td><a href="https://landing.nugormart.com/batik/dress">https://landing.nugormart.com/batik/dress</a></td>
                                 </tr>
-                                @foreach ($products as $product)
+                                @foreach ($products as $sl=>$product)
                                     <tr>
-                                        <td>2</td>
-                                        <td><a href="{{ url('/landing/'. $product->slug) }}">{{ $product->slug }}</a></td>
+                                        <td>{{ $sl+3 }}</td>
+                                        <td><a href="{{ url('/landing/'. $product->slug) }}">https://landing.nugormart.com/{{ $product->slug }}</a></td>
                                     </tr>
                                 @endforeach
                                 {{-- <tr>
