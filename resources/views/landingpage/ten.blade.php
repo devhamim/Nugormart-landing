@@ -1291,7 +1291,7 @@
                                     }
                                 </style>
                             <h3 class="elementor-headline e-animated">
-                                <span style="font-family: 'Hind Siliguri', Sans-serif" class="elementor-headline-plain-text elementor-headline-text-wrapper">মদিনা ডাইং, আনস্টিচ টু পিস, রেগুলার প্রাইস </span>
+                                <span style="font-family: 'Hind Siliguri', Sans-serif" class="elementor-headline-plain-text elementor-headline-text-wrapper">{{ $products->name }}, রেগুলার প্রাইস </span>
                                 <span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
                                     <span
                                         class="elementor-headline-dynamic-text elementor-headline-text-active">{{ $products->showdiscount }}/-</span>
