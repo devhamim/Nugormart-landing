@@ -39,31 +39,6 @@
                                         <td><a href="{{ url('/landing/'. $product->slug) }}">https://landing.nugormart.com/{{ $product->slug }}</a></td>
                                     </tr>
                                 @endforeach
-                                {{-- <tr>
-                                    <td>2</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/landing/page">https://cottonbd.nitebiz.com/landing/page</a></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/putul/dress">https://cottonbd.nitebiz.com/putul/dress</a></td>
-                                </tr> --}}
-                                {{-- <tr>
-                                    <td>4</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/sharee">https://cottonbd.nitebiz.com/sharee</a></td>
-                                </tr> --}}
-
-                                {{-- <tr>
-                                    <td>6</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/premium/dress">https://cottonbd.nitebiz.com/premium/dress</a></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/fotula">https://cottonbd.nitebiz.com/fotula</a></td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td><a href="https://cottonbd.nitebiz.com/premium/tiya">https://cottonbd.nitebiz.com/premium/tiya</a></td>
-                                </tr> --}}
                             </tbody>
                         </table>
                     </div>

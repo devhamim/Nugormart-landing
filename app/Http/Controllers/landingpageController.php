@@ -36,14 +36,6 @@ class landingpageController extends Controller
         ]);
     }
 
-    //premium_dress
-    function premium_dress(){
-        $products = Product::find(44);
-        return view('landingpage.six',[
-            'products'=>$products,
-        ]);
-    }
-
     // landing_order_store
     function landing_order_store(Request $request){
         $request->validate([
@@ -112,35 +104,7 @@ class landingpageController extends Controller
         ]);
     }
 
-    //black_dress
-    function black_dress(){
-        $products = Product::find(32);
-        return view('landingpage.foreth',[
-            'products'=>$products,
-        ]);
-    }
-    //putul_dress
-    function putul_dress(){
-        $products = Product::find(42);
-        return view('landingpage.threepage',[
-            'products'=>$products,
-        ]);
-    }
 
-    //fotula
-    function fotula(){
-        $products = Product::find(45);
-        return view('landingpage.saven',[
-            'products'=>$products,
-        ]);
-    }
-    //premium_tiya
-    function premium_tiya(){
-        $products = Product::find(52);
-        return view('landingpage.eight',[
-            'products'=>$products,
-        ]);
-    }
     //karijma_stone
     function karijma_stone(){
         $products = Product::find(53);

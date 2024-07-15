@@ -42,12 +42,7 @@ Route::post('/landing/order/store', [landingpageController::class, 'landing_orde
 Route::get('/landing/{slug}', [landingpageController::class, 'landing_product'])->name('landing.product');
 
 // landing three page
-// Route::get('/black/dress', [landingpageController::class, 'black_dress'])->name('black.dress');
 Route::get('/batik/dress', [landingpageController::class, 'batik_dress'])->name('batik.dress');
-// Route::get('/putul/dress', [landingpageController::class, 'putul_dress'])->name('putul.dress');
-// Route::get('/premium/dress', [landingpageController::class, 'premium_dress'])->name('premium.dress');
-// Route::get('/fotula', [landingpageController::class, 'fotula'])->name('fotula');
-// Route::get('/premium/tiya', [landingpageController::class, 'premium_tiya'])->name('premium.tiya');
 Route::get('/karijma/stone', [landingpageController::class, 'karijma_stone'])->name('karijma.stone');
 
 
