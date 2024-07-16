@@ -152,7 +152,7 @@ class OrderController extends Controller
          // Update Order
          if ($request->orders_id) {
              $order = Order::where('id', $request->orders_id)->first();
-             $subtotal = $order->sub_total*$request->quantity;
+             $subtotal = $request->product_price*$request->quantity;
              $subdelivary = $subtotal+$request->delivery_charge;
              $orderRules = [
                  'color' => 'required',
@@ -161,6 +161,7 @@ class OrderController extends Controller
              ];
              $validatedOrder = $request->validate($orderRules);
 
+             $validatedOrder['sub_total'] = $subtotal;
              $validatedOrder['total'] = $subdelivary-$request->discount;
 
              $order->update($validatedOrder);

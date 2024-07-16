@@ -145,7 +145,10 @@
                                                         <input type="text" style="width: 150px; margin: 0 auto" class="form-control" value="{{ $product->quantity }}" name="quantity">
                                                         <input type="hidden" value="{{ $product->id }}" name="orderproduct_id">
                                                     </td>
-                                                    <td class="text-center">{{ number_format($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price, 2) }} Tk</td>
+                                                    <td class="text-center">
+                                                        <input type="hidden" name="product_price" value="{{ $product->rel_to_attribute->sell_price }}">
+                                                        {{ number_format($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price, 2) }} Tk
+                                                    </td>
                                                     <td class="text-right">{{ number_format(($product->rel_to_attribute->sell_price ?? $product->rel_to_attribute->price) * $product->quantity, 2) }} Tk</td>
                                                 </tr>
 
