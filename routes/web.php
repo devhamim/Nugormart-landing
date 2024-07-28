@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DelevaryChargeController;
+use App\Http\Controllers\ExalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\landingpageController;
@@ -81,6 +82,9 @@ Route::group(['prefix' => 'admin'], function(){
 
     Route::get('/commingsoon', [HomeController::class, 'commingsoon'])->name('commingsoon');
 });
+
+// exal
+Route::post('/orders/export', [ExalController::class, 'orders_export'])->name('orders.export');
 
 Route::post('/getProduct', [POSController::class, 'getProduct'])->name('getProduct');
 Route::post('/getAttributeDetails', [POSController::class, 'getAttributeDetails'])->name('getAttributeDetails');

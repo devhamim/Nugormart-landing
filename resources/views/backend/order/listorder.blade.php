@@ -39,6 +39,15 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="mx-3">
+                            <form action="{{ route('orders.export') }}" method="post" id="all_exal_form">
+                                @csrf
+                                <input type="hidden" name="exal_data" id="checked_value">
+                                <div class="form-group">
+                                    <button type="submit" id="bulk_exal_btn" class="btn btn-info">Exal</button>
+                                </div>
+                            </form>
+                        </div>
                         <div >
                             <form action="{{ route('multi.view.invoice') }}" method="post" id="all_print_form">
                                 @csrf
@@ -345,7 +354,7 @@ Bill: ${order.bill}
     });
 </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function () {
         var start_date = '{{ $defaultStartDate }}';
         var end_date = '{{ $defaultEndDate }}';
@@ -354,7 +363,7 @@ Bill: ${order.bill}
             start_date = moment(start_date, 'YYYY-MM-DD');
             end_date = moment(end_date, 'YYYY-MM-DD');
         } else {
-            start_date = moment().subtract(6, 'days');
+            start_date = 'moment().subtract(6, 'days')';
             end_date = moment();
         }
 
@@ -405,10 +414,10 @@ Bill: ${order.bill}
             navigateToOrders('cancel');
         });
     });
-</script>
+</script> --}}
 
 
-{{-- <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
         var start_date = '{{ $defaultStartDate }}';
         var end_date = '{{ $defaultEndDate }}';
@@ -465,7 +474,7 @@ Bill: ${order.bill}
             window.location.href = '{{ url("admin/orders") }}?status=cancel';
         });
     });
-</script> --}}
+</script>
 @endsection
 
 <script>

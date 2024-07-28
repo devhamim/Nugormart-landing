@@ -38,6 +38,15 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="mx-3">
+                            <form action="<?php echo e(route('orders.export')); ?>" method="post" id="all_exal_form">
+                                <?php echo csrf_field(); ?>
+                                <input type="hidden" name="exal_data" id="checked_value">
+                                <div class="form-group">
+                                    <button type="submit" id="bulk_exal_btn" class="btn btn-info">Exal</button>
+                                </div>
+                            </form>
+                        </div>
                         <div >
                             <form action="<?php echo e(route('multi.view.invoice')); ?>" method="post" id="all_print_form">
                                 <?php echo csrf_field(); ?>
@@ -352,6 +361,9 @@ Bill: ${order.bill}
     });
 </script>
 
+
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         var start_date = '<?php echo e($defaultStartDate); ?>';
@@ -384,38 +396,32 @@ Bill: ${order.bill}
             }
         }, cb);
         cb(start_date, end_date);
-
-        function navigateToOrders(status) {
-            var start_date = $('#start_date').val();
-            var end_date = $('#end_date').val();
-            var url = '<?php echo e(url("admin/orders")); ?>' + '?status=' + status + '&start_date=' + start_date + '&end_date=' + end_date;
-            window.location.href = url;
-        }
-
-        document.getElementById('total-orders').addEventListener('click', function() {
-            navigateToOrders('');
-        });
-
-        document.getElementById('pending-orders').addEventListener('click', function() {
-            navigateToOrders('pending');
-        });
-
-        document.getElementById('confirm-orders').addEventListener('click', function() {
-            navigateToOrders('confirm');
-        });
-
-        document.getElementById('hold-orders').addEventListener('click', function() {
-            navigateToOrders('hold');
-        });
-
-        document.getElementById('cancel-orders').addEventListener('click', function() {
-            navigateToOrders('cancel');
-        });
     });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('total-orders').addEventListener('click', function() {
+            window.location.href = '<?php echo e(url("admin/orders")); ?>';
+        });
 
+        document.getElementById('pending-orders').addEventListener('click', function() {
+            window.location.href = '<?php echo e(url("admin/orders")); ?>?status=pending';
+        });
 
+        document.getElementById('confirm-orders').addEventListener('click', function() {
+            window.location.href = '<?php echo e(url("admin/orders")); ?>?status=confirm';
+        });
+
+        document.getElementById('hold-orders').addEventListener('click', function() {
+            window.location.href = '<?php echo e(url("admin/orders")); ?>?status=hold';
+        });
+
+        document.getElementById('cancel-orders').addEventListener('click', function() {
+            window.location.href = '<?php echo e(url("admin/orders")); ?>?status=cancel';
+        });
+    });
+</script>
 <?php $__env->stopSection(); ?>
 
 <script>

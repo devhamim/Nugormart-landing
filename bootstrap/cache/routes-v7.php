@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::OzRVK7CQFs0YorQk',
+            '_route' => 'generated::vOjURyiEu9lwotSj',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::JeeeQtCvn2a4ZDgC',
+            '_route' => 'generated::x1kTANuxnUWbSEnX',
           ),
           1 => NULL,
           2 => 
@@ -970,7 +970,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::TRc3WuDLn9gD3XEO',
+            '_route' => 'generated::K6uViqC2Uc8fUPhU',
           ),
           1 => NULL,
           2 => 
@@ -989,7 +989,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Tha8KHpJUxSfClii',
+            '_route' => 'generated::KFbt29zZnfVITXTw',
           ),
           1 => NULL,
           2 => 
@@ -1034,6 +1034,25 @@ app('router')->setCompiledRoutes(
           array (
             'GET' => 0,
             'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/orders/export' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'orders.export',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -2284,7 +2303,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::OzRVK7CQFs0YorQk' => 
+    'generated::vOjURyiEu9lwotSj' => 
     array (
       'methods' => 
       array (
@@ -2301,13 +2320,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:77:"function (\\Illuminate\\Http\\Request $request) {
     return $request->user();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005c20000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000a530000000000000000";}}',
         'namespace' => NULL,
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::OzRVK7CQFs0YorQk',
+        'as' => 'generated::vOjURyiEu9lwotSj',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2653,7 +2672,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::JeeeQtCvn2a4ZDgC' => 
+    'generated::x1kTANuxnUWbSEnX' => 
     array (
       'methods' => 
       array (
@@ -2673,7 +2692,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::JeeeQtCvn2a4ZDgC',
+        'as' => 'generated::x1kTANuxnUWbSEnX',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5626,7 +5645,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::TRc3WuDLn9gD3XEO' => 
+    'generated::K6uViqC2Uc8fUPhU' => 
     array (
       'methods' => 
       array (
@@ -5646,7 +5665,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::TRc3WuDLn9gD3XEO',
+        'as' => 'generated::K6uViqC2Uc8fUPhU',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5662,7 +5681,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Tha8KHpJUxSfClii' => 
+    'generated::KFbt29zZnfVITXTw' => 
     array (
       'methods' => 
       array (
@@ -5682,7 +5701,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::Tha8KHpJUxSfClii',
+        'as' => 'generated::KFbt29zZnfVITXTw',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5830,6 +5849,42 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'commingsoon',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'orders.export' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'orders/export',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ExalController@orders_export',
+        'controller' => 'App\\Http\\Controllers\\ExalController@orders_export',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'orders.export',
       ),
       'fallback' => false,
       'defaults' => 
