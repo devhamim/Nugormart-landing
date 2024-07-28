@@ -56,6 +56,8 @@
     </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('landingpage/sharee') }}/wp-content/cache/wpfc-minified/1y6plmk/5ukdx.css"
         media="all" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('landingpage/jquery.atAccordionOrTabs.css') }}">
     <style id='classic-theme-styles-inline-css' type='text/css'>
         /*! This file is auto-generated */
         .wp-block-button__link {
@@ -1684,6 +1686,7 @@
                                                                     </td>
                                                                 </tr>
                                                                 <!-- End Shipping Options -->
+
                                                                 <!-- Order Total -->
                                                                 <tr class="order-total">
                                                                     <th>Total</th>
@@ -1728,8 +1731,114 @@
                                                                 <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="bacs" checked="checked" data-order_button_text="" style="display: none;">
 
                                                                 <label for="payment_method_bacs">
-                                                                    ক্যাশঅন ডেলিভারি 	</label>
-                                                                        <div class="payment_box payment_method_bacs">
+                                                                     ডেলিভারি
+                                                                </label>
+                                                                {{-- <ul class="nav nav-tabs row">
+                                                                    <style>
+                                                                        .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+                                                                                border-color: #0080ff #0064c9 #007bf7;
+                                                                            }
+                                                                    </style>
+                                                                    <li class="nav-item col-lg-6">
+                                                                      <a class="nav-link" >
+                                                                        <input type="radio" id="cashondelivary" name="payment_option" checked>
+                                                                        <label for="cashondelivary">
+                                                                            <img width="100%" src="{{ asset('landingpage/cash.png') }}" alt="">
+                                                                        </label>
+                                                                      </a>
+                                                                    </li>
+                                                                    <li class="nav-item col-lg-6">
+                                                                      <a class="nav-link">
+                                                                        <input type="radio" id="bkash" name="payment_option">
+                                                                        <label for="bkash">
+                                                                            <img src="{{ asset('landingpage/bkash.png') }}" alt="">
+                                                                        </label>
+                                                                      </a>
+                                                                    </li>
+                                                                </ul> --}}
+                                                                <style>
+                                                                    .payment_option{
+                                                                        display: flex;
+                                                                    }
+                                                                    .cash_on_delivery{
+                                                                        width: 50%;
+                                                                        text-align: center;
+                                                                        border: 1px solid #2600ff;
+                                                                        /* padding: 10px 0; */
+                                                                    }
+                                                                    .bkash{
+                                                                        width: 50%;
+                                                                        text-align: center;
+                                                                        border: 1px solid #2600ff;
+                                                                        /* padding: 10px 0; */
+                                                                    }
+                                                                    .selected {
+                                                                        background-color: rgb(255, 0, 0); /* Change to desired color */
+                                                                    }
+
+                                                                </style>
+                                                                <ul class="demo payment_option">
+
+                                                                    <li class="cash_on_delivery">
+                                                                        <a>
+                                                                            <input type="radio" id="cashondelivary" name="payment_option" checked>
+                                                                            <label for="cashondelivary">
+                                                                                <img width="100%" src="{{ asset('landingpage/cash.png') }}" alt="">
+                                                                            </label>
+                                                                        </a>
+                                                                      <section>
+                                                                        <p>Content 1</p>
+                                                                      </section>
+                                                                    </li>
+                                                                    <li class="bkash">
+                                                                        <a>
+                                                                            <input type="radio" id="bkash" name="payment_option">
+                                                                            <label for="bkash">
+                                                                                <img src="{{ asset('landingpage/bkash.png') }}" alt="">
+                                                                            </label>
+                                                                        </a>
+                                                                      <section>
+                                                                        <p>Content 2 bkash</p>
+                                                                       </section>
+                                                                    </li>
+
+                                                                  </ul>
+                                                                {{-- <style>
+                                                                    .payment_option{
+                                                                        display: flex;
+                                                                    }
+                                                                    .cash_on_delivery{
+                                                                        width: 50%;
+                                                                        text-align: center;
+                                                                        border: 1px solid;
+                                                                        padding: 10px 0;
+                                                                    }
+                                                                    .bkash{
+                                                                        width: 50%;
+                                                                        text-align: center;
+                                                                        border: 1px solid;
+                                                                        padding: 10px 0;
+                                                                    }
+                                                                    .selected {
+                                                                        background-color: rgb(255, 0, 0); /* Change to desired color */
+                                                                    }
+
+                                                                </style>
+                                                                    <div class="payment_option">
+                                                                        <div class="cash_on_delivery">
+                                                                            <input type="radio" id="cashondelivary" name="payment_option" checked>
+                                                                            <label for="cashondelivary">
+                                                                                <img width="100%" src="{{ asset('landingpage/cash.png') }}" alt="">
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="bkash">
+                                                                            <input type="radio" id="bkash" name="payment_option">
+                                                                            <label for="bkash">
+                                                                                <img src="{{ asset('landingpage/bkash.png') }}" alt="">
+                                                                            </label>
+                                                                        </div>
+                                                                    </div> --}}
+                                                                    <div class="payment_box payment_method_bacs">
                                                                         <p>ডেলিভারি চার্জ প্রযোজ্য ১০০% কনফার্ম হয়ে অর্ডার করবেন। আপনার কোন কারনে  অর্ডার রিসিভ না করলে ডেলিভারি চার্জ দিয়ে রিটার্ন করতে পারবেন।</p>
                                                                     </div>
                                                             </li>
@@ -1933,6 +2042,13 @@
     <script type="text/javascript"
         src="{{ asset('landingpage/sharee') }}/wp-content/plugins/pro-elements/assets/js/webpack-pro.runtime.min08e6.js?ver=3.21.2"
         id="elementor-pro-webpack-runtime-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{{ asset('landingpage/jquery.atAccordionOrTabs.js') }}"></script>
+    <script src="{{ asset('landingpage/jquery.bbq.js') }}"></script>
+
+    <script>
+        $('.demo').accordionortabs();
+    </script>
     <script type="text/javascript" src="{{ asset('landingpage/sharee') }}/wp-content/plugins/elementor/assets/js/webpack.runtime.min63aa.js?ver=3.21.5"
         id="elementor-webpack-runtime-js"></script>
     <script type="text/javascript" src="{{ asset('landingpage/sharee') }}/wp-content/plugins/elementor/assets/js/frontend-modules.min63aa.js?ver=3.21.5"
