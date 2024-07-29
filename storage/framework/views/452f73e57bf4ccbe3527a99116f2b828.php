@@ -56,8 +56,6 @@
     </style>
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('landingpage/sharee')); ?>/wp-content/cache/wpfc-minified/1y6plmk/5ukdx.css"
         media="all" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php echo e(asset('landingpage/jquery.atAccordionOrTabs.css')); ?>">
     <style id='classic-theme-styles-inline-css' type='text/css'>
         /*! This file is auto-generated */
         .wp-block-button__link {
@@ -1771,41 +1769,35 @@ unset($__errorArgs, $__bag); ?>
                                                                 <label for="payment_method_bacs">
                                                                      ডেলিভারি
                                                                 </label>
-                                                                
-
-
-                                                                
-
-
                                                                 <style>
                                                                     .payment_option {
                                                                         display: flex;
+                                                                        border: 1px solid;
                                                                     }
                                                                     .payment_option div {
-                                                                        width: 50%;
+                                                                        width: 100%;
                                                                         text-align: center;
-                                                                        border: 1px solid;
                                                                         padding: 10px 0;
                                                                         cursor: pointer;
                                                                     }
                                                                     .selected {
-                                                                        background-color: rgb(255, 255, 255); /* Change to desired color */
+                                                                        background-color: rgb(255, 255, 255);
                                                                     }
                                                                     .payment_option div img {
                                                                         width: 100%;
                                                                     }
                                                                     .content {
-                                                                        display: none; /* Hide content initially */
+                                                                        display: none;
                                                                         padding: 10px;
                                                                         border-top: 1px solid;
                                                                     }
                                                                     .content.active {
-                                                                        display: block; /* Show content when active */
+                                                                        display: block;
                                                                     }
                                                                 </style>
                                                                     <div class="payment_option">
                                                                         <div class="cash_on_delivery">
-                                                                            <input type="radio" id="cashondelivary" name="payment_option" checked>
+                                                                            <input type="radio" id="cashondelivary" name="payment_option" value="1" checked>
                                                                             <label for="cashondelivary">
                                                                                 <img src="<?php echo e(asset('landingpage/cash.png')); ?>" alt="Cash on Delivery">
                                                                             </label>
@@ -1814,7 +1806,7 @@ unset($__errorArgs, $__bag); ?>
                                                                             </div>
                                                                         </div>
                                                                         <div class="bkash">
-                                                                            <input type="radio" id="bkash" name="payment_option">
+                                                                            <input type="radio" id="bkash" name="payment_option" value="2">
                                                                             <label for="bkash">
                                                                                 <img src="<?php echo e(asset('landingpage/bkash.png')); ?>" alt="Bkash">
                                                                             </label>
@@ -1832,27 +1824,20 @@ unset($__errorArgs, $__bag); ?>
                                                                                 const input = option.querySelector('input');
                                                                                 const label = option.querySelector('label');
 
-                                                                                // Add click event to the div (for the image click)
                                                                                 option.addEventListener('click', function () {
-                                                                                    // Select the radio button
                                                                                     input.checked = true;
 
-                                                                                    // Remove 'selected' class from all options
                                                                                     paymentOptions.forEach(opt => opt.classList.remove('selected'));
 
-                                                                                    // Hide all content sections
                                                                                     contents.forEach(content => content.classList.remove('active'));
 
-                                                                                    // Add 'selected' class to the clicked option
                                                                                     this.classList.add('selected');
 
-                                                                                    // Show content corresponding to the clicked option
                                                                                     const contentId = input.id + '_content';
                                                                                     document.getElementById(contentId).classList.add('active');
                                                                                 });
                                                                             });
 
-                                                                            // Initialize by showing content for the default checked radio
                                                                             const defaultCheckedInput = document.querySelector('input[name="payment_option"]:checked');
                                                                             if (defaultCheckedInput) {
                                                                                 const defaultCheckedId = defaultCheckedInput.id;
@@ -2066,13 +2051,6 @@ unset($__errorArgs, $__bag); ?>
     <script type="text/javascript"
         src="<?php echo e(asset('landingpage/sharee')); ?>/wp-content/plugins/pro-elements/assets/js/webpack-pro.runtime.min08e6.js?ver=3.21.2"
         id="elementor-pro-webpack-runtime-js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="<?php echo e(asset('landingpage/jquery.atAccordionOrTabs.js')); ?>"></script>
-    <script src="<?php echo e(asset('landingpage/jquery.bbq.js')); ?>"></script>
-
-    <script>
-        $('.demo').accordionortabs();
-    </script>
     <script type="text/javascript" src="<?php echo e(asset('landingpage/sharee')); ?>/wp-content/plugins/elementor/assets/js/webpack.runtime.min63aa.js?ver=3.21.5"
         id="elementor-webpack-runtime-js"></script>
     <script type="text/javascript" src="<?php echo e(asset('landingpage/sharee')); ?>/wp-content/plugins/elementor/assets/js/frontend-modules.min63aa.js?ver=3.21.5"

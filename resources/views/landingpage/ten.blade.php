@@ -1734,11 +1734,11 @@
                                                                 <style>
                                                                     .payment_option {
                                                                         display: flex;
+                                                                        border: 1px solid;
                                                                     }
                                                                     .payment_option div {
-                                                                        width: 50%;
+                                                                        width: 100%;
                                                                         text-align: center;
-                                                                        border: 1px solid;
                                                                         padding: 10px 0;
                                                                         cursor: pointer;
                                                                     }
