@@ -1772,54 +1772,96 @@ unset($__errorArgs, $__bag); ?>
                                                                      ডেলিভারি
                                                                 </label>
                                                                 
+
+
+                                                                
+
+
                                                                 <style>
-                                                                    .payment_option{
+                                                                    .payment_option {
                                                                         display: flex;
                                                                     }
-                                                                    .cash_on_delivery{
+                                                                    .payment_option div {
                                                                         width: 50%;
                                                                         text-align: center;
-                                                                        border: 1px solid #2600ff;
-                                                                        /* padding: 10px 0; */
-                                                                    }
-                                                                    .bkash{
-                                                                        width: 50%;
-                                                                        text-align: center;
-                                                                        border: 1px solid #2600ff;
-                                                                        /* padding: 10px 0; */
+                                                                        border: 1px solid;
+                                                                        padding: 10px 0;
+                                                                        cursor: pointer;
                                                                     }
                                                                     .selected {
-                                                                        background-color: rgb(255, 0, 0); /* Change to desired color */
+                                                                        background-color: rgb(255, 255, 255); /* Change to desired color */
                                                                     }
-
+                                                                    .payment_option div img {
+                                                                        width: 100%;
+                                                                    }
+                                                                    .content {
+                                                                        display: none; /* Hide content initially */
+                                                                        padding: 10px;
+                                                                        border-top: 1px solid;
+                                                                    }
+                                                                    .content.active {
+                                                                        display: block; /* Show content when active */
+                                                                    }
                                                                 </style>
-                                                                <ul class="demo payment_option">
-
-                                                                    <li class="cash_on_delivery">
-                                                                        <a>
+                                                                    <div class="payment_option">
+                                                                        <div class="cash_on_delivery">
                                                                             <input type="radio" id="cashondelivary" name="payment_option" checked>
                                                                             <label for="cashondelivary">
-                                                                                <img width="100%" src="<?php echo e(asset('landingpage/cash.png')); ?>" alt="">
+                                                                                <img src="<?php echo e(asset('landingpage/cash.png')); ?>" alt="Cash on Delivery">
                                                                             </label>
-                                                                        </a>
-                                                                      <section>
-                                                                        <p>Content 1</p>
-                                                                      </section>
-                                                                    </li>
-                                                                    <li class="bkash">
-                                                                        <a>
+                                                                            <div class="content" id="cashondelivary_content">
+                                                                                <p>Cash on delivery option content.</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="bkash">
                                                                             <input type="radio" id="bkash" name="payment_option">
                                                                             <label for="bkash">
-                                                                                <img src="<?php echo e(asset('landingpage/bkash.png')); ?>" alt="">
+                                                                                <img src="<?php echo e(asset('landingpage/bkash.png')); ?>" alt="Bkash">
                                                                             </label>
-                                                                        </a>
-                                                                      <section>
-                                                                        <p>Content 2 bkash</p>
-                                                                       </section>
-                                                                    </li>
+                                                                            <div class="content" id="bkash_content">
+                                                                                <p>Bkash payment option content.</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <script>
+                                                                        document.addEventListener('DOMContentLoaded', function () {
+                                                                            const paymentOptions = document.querySelectorAll('.payment_option div');
+                                                                            const contents = document.querySelectorAll('.content');
 
-                                                                  </ul>
-                                                                
+                                                                            paymentOptions.forEach(option => {
+                                                                                const input = option.querySelector('input');
+                                                                                const label = option.querySelector('label');
+
+                                                                                // Add click event to the div (for the image click)
+                                                                                option.addEventListener('click', function () {
+                                                                                    // Select the radio button
+                                                                                    input.checked = true;
+
+                                                                                    // Remove 'selected' class from all options
+                                                                                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+
+                                                                                    // Hide all content sections
+                                                                                    contents.forEach(content => content.classList.remove('active'));
+
+                                                                                    // Add 'selected' class to the clicked option
+                                                                                    this.classList.add('selected');
+
+                                                                                    // Show content corresponding to the clicked option
+                                                                                    const contentId = input.id + '_content';
+                                                                                    document.getElementById(contentId).classList.add('active');
+                                                                                });
+                                                                            });
+
+                                                                            // Initialize by showing content for the default checked radio
+                                                                            const defaultCheckedInput = document.querySelector('input[name="payment_option"]:checked');
+                                                                            if (defaultCheckedInput) {
+                                                                                const defaultCheckedId = defaultCheckedInput.id;
+                                                                                document.getElementById(defaultCheckedId + '_content').classList.add('active');
+                                                                                const defaultCheckedDiv = document.querySelector(`div .${defaultCheckedId}`).parentElement;
+                                                                                defaultCheckedDiv.classList.add('selected');
+                                                                            }
+                                                                        });
+                                                                    </script>
                                                                     <div class="payment_box payment_method_bacs">
                                                                         <p>ডেলিভারি চার্জ প্রযোজ্য ১০০% কনফার্ম হয়ে অর্ডার করবেন। আপনার কোন কারনে  অর্ডার রিসিভ না করলে ডেলিভারি চার্জ দিয়ে রিটার্ন করতে পারবেন।</p>
                                                                     </div>
