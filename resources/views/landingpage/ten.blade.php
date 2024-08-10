@@ -1197,7 +1197,7 @@
                     </div>
                 </div>
             </div>
-            <div class="elementor-element elementor-element-42bc362 e-flex e-con-boxed e-con e-parent"
+            {{-- <div class="elementor-element elementor-element-42bc362 e-flex e-con-boxed e-con e-parent"
                 data-id="42bc362" data-element_type="container"
                 data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
                 <div class="e-con-inner">
@@ -1228,7 +1228,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="elementor-element elementor-element-a7a7989 e-con-full e-flex e-con e-parent"
                 data-id="a7a7989" data-element_type="container"
                 data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
