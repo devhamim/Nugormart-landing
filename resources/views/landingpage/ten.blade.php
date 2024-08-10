@@ -1729,87 +1729,8 @@
                                                                 <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="bacs" checked="checked" data-order_button_text="" style="display: none;">
 
                                                                 <label for="payment_method_bacs">
-                                                                     ডেলিভারি
-                                                                </label>
-                                                                <style>
-                                                                    .payment_option {
-                                                                        display: flex;
-                                                                        border: 1px solid;
-                                                                    }
-                                                                    .payment_option div {
-                                                                        width: 100%;
-                                                                        text-align: center;
-                                                                        padding: 10px 0;
-                                                                        cursor: pointer;
-                                                                    }
-                                                                    .selected {
-                                                                        background-color: rgb(255, 255, 255);
-                                                                    }
-                                                                    .payment_option div img {
-                                                                        width: 100%;
-                                                                    }
-                                                                    .content {
-                                                                        display: none;
-                                                                        padding: 10px;
-                                                                        border-top: 1px solid;
-                                                                    }
-                                                                    .content.active {
-                                                                        display: block;
-                                                                    }
-                                                                </style>
-                                                                    <div class="payment_option">
-                                                                        <div class="cash_on_delivery">
-                                                                            <input type="radio" id="cashondelivary" name="payment_option" value="1" checked>
-                                                                            <label for="cashondelivary">
-                                                                                <img src="{{ asset('landingpage/cash.png') }}" alt="Cash on Delivery">
-                                                                            </label>
-                                                                            <div class="content" id="cashondelivary_content">
-                                                                                <p>Cash on delivery option content.</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="bkash">
-                                                                            <input type="radio" id="bkash" name="payment_option" value="2">
-                                                                            <label for="bkash">
-                                                                                <img src="{{ asset('landingpage/bkash.png') }}" alt="Bkash">
-                                                                            </label>
-                                                                            <div class="content" id="bkash_content">
-                                                                                <p>Bkash payment option content.</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <script>
-                                                                        document.addEventListener('DOMContentLoaded', function () {
-                                                                            const paymentOptions = document.querySelectorAll('.payment_option div');
-                                                                            const contents = document.querySelectorAll('.content');
-
-                                                                            paymentOptions.forEach(option => {
-                                                                                const input = option.querySelector('input');
-                                                                                const label = option.querySelector('label');
-
-                                                                                option.addEventListener('click', function () {
-                                                                                    input.checked = true;
-
-                                                                                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
-
-                                                                                    contents.forEach(content => content.classList.remove('active'));
-
-                                                                                    this.classList.add('selected');
-
-                                                                                    const contentId = input.id + '_content';
-                                                                                    document.getElementById(contentId).classList.add('active');
-                                                                                });
-                                                                            });
-
-                                                                            const defaultCheckedInput = document.querySelector('input[name="payment_option"]:checked');
-                                                                            if (defaultCheckedInput) {
-                                                                                const defaultCheckedId = defaultCheckedInput.id;
-                                                                                document.getElementById(defaultCheckedId + '_content').classList.add('active');
-                                                                                const defaultCheckedDiv = document.querySelector(`div .${defaultCheckedId}`).parentElement;
-                                                                                defaultCheckedDiv.classList.add('selected');
-                                                                            }
-                                                                        });
-                                                                    </script>
-                                                                    <div class="payment_box payment_method_bacs">
+                                                                    ক্যাশঅন ডেলিভারি 	</label>
+                                                                        <div class="payment_box payment_method_bacs">
                                                                         <p>ডেলিভারি চার্জ প্রযোজ্য ১০০% কনফার্ম হয়ে অর্ডার করবেন। আপনার কোন কারনে  অর্ডার রিসিভ না করলে ডেলিভারি চার্জ দিয়ে রিটার্ন করতে পারবেন।</p>
                                                                     </div>
                                                             </li>
