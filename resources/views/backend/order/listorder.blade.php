@@ -29,6 +29,9 @@
                                                 <button name="status" value="{{ $orders->first()->order_id .','. '0' }}" class="dropdown-item status">Pending</button>
                                             </li>
                                             <li>
+                                                <button name="status" value="{{ $orders->first()->order_id .','. '1' }}" class="dropdown-item status">On Hold</button>
+                                            </li>
+                                            <li>
                                                 <button name="status" value="{{ $orders->first()->order_id .','. '4' }}" class="dropdown-item status">Confirmed</button>
                                             </li>
                                             <li>
@@ -39,7 +42,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="mx-3">
+                        {{-- <div class="mx-3">
                             <form action="{{ route('orders.export') }}" method="post" id="all_exal_form">
                                 @csrf
                                 <input type="hidden" name="exal_data" id="checked_value">
@@ -47,7 +50,7 @@
                                     <button type="submit" id="bulk_exal_btn" class="btn btn-info">Exal</button>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                         <div >
                             <form action="{{ route('multi.view.invoice') }}" method="post" id="all_print_form">
                                 @csrf
